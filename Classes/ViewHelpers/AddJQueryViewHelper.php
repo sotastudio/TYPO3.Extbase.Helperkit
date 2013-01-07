@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Andy Hausmann <hi@andy-hausmann.de>
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>
  *
  *  All rights reserved
  *
@@ -36,7 +36,7 @@
  * <output>
  * </output>
  *
- * @author Andy Hausmann <hi@andy-hausmann.de>
+ * @author Andy Hausmann <ah@sota-studio.de>
  * @package helperkit
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
@@ -65,7 +65,7 @@ class Tx_Helperkit_ViewHelpers_AddJQueryViewHelper extends Tx_Fluid_Core_ViewHel
 			if ($altJQueryFile) {
 				Tx_Helperkit_Utility_Div::addCssJsFile(
 					$altJQueryFile,
-					'flexSliderJQuery'
+					'helperkitJQuery'
 				);
 			} else {
 				Tx_Helperkit_Utility_Div::renderFlashMessage(

@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012 Andy Hausmann <hi@andy-hausmann.de>
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>
  *
  *  All rights reserved
  *
@@ -33,7 +33,7 @@
  *   Content to be wrapped (of course html and other ViewHelpers are allowed!)
  * </fs:DynLink>
  *
- * @author Andy Hausmann <hi@andy-hausmann.de>
+ * @author Andy Hausmann <ah@sota-studio.de>
  * @package helperkit
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
@@ -61,6 +61,7 @@ class Tx_Helperkit_ViewHelpers_DynLinkViewHelper extends Tx_Fluid_Core_ViewHelpe
 		$this->registerUniversalTagAttributes();
 		$this->registerArgument('arguments', 'array', 'Given arguments by Fluid call as an array.');
 		$this->registerArgument('href', 'string', 'Link href.');
+		$this->paramLabels = array('href', 'target', 'class', 'title');
 	}
 
 	/**
@@ -72,10 +73,10 @@ class Tx_Helperkit_ViewHelpers_DynLinkViewHelper extends Tx_Fluid_Core_ViewHelpe
 	 *
 	 * In order to avoid fatal errors, this new method has been temporarily implemented.
 	 *
-	 * @param $arguments
+	 * @param array $arguments
 	 * @return void
 	 */
-	public function setArgumentsFromArray($arguments) {
+	public function setArgumentsFromArray(array $arguments) {
 		$this->arguments = $arguments;
 	}
 
@@ -89,11 +90,12 @@ class Tx_Helperkit_ViewHelpers_DynLinkViewHelper extends Tx_Fluid_Core_ViewHelpe
 	{
 		$paramDataArr = explode(' ', $link);
 		// Combine labels and values into one array
-		$paramDataArr = Tx_Flexslider_Utility_Div::combineArray($this->paramLabels, $paramDataArr, false);
-		// Save link data into ViewHelper arguments
-		$this->setArgumentsFromArray($paramDataArr);
+		$paramDataArr = Tx_Helperkit_Utility_Div::combineArray($this->paramLabels, $paramDataArr, false);
 
-		if (isset($this->arguments['href']) && !empty($this->arguments['href'])) {
+		if (isset($paramDataArr['href']) && !empty($paramDataArr['href'])) {
+			// Save link data into ViewHelper arguments
+			$this->setArgumentsFromArray($paramDataArr);
+
 			$cObj = t3lib_div::makeInstance('tslib_cObj');
 			$configuration = array(
 				'parameter' => $this->arguments['href'],
@@ -131,9 +133,6 @@ class Tx_Helperkit_ViewHelpers_DynLinkViewHelper extends Tx_Fluid_Core_ViewHelpe
 	 */
 	public function render()
 	{
-		// Had to move it from initializeArguments() to render() in order to avoid caching bugs.
-		$this->paramLabels = array('href', 'target', 'class', 'title');
-
 		if ($this->processLinkParams($this->arguments['arguments']['link'])) {
 			$this->tag->setContent($this->renderChildren());
 			$this->addTagAttributes();
