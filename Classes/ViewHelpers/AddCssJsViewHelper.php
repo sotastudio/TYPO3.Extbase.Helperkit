@@ -56,12 +56,8 @@ class Tx_Helperkit_ViewHelpers_AddCssJsViewHelper extends Tx_Fluid_Core_ViewHelp
 	public function render($file = NULL, $moveToFooter = FALSE)
 	{
 		if ($file) {
-			// Get file extension (after last occurance of a dot)
-			$mediaTypeSplit = strrchr($file, '.');
-
 			Tx_Helperkit_Utility_Div::addCssJsFile(
 				$file,
-				($mediaTypeSplit == '.js') ? 'flexSliderJs' : 'flexSliderCss',
 				$moveToFooter
 			);
 		}
