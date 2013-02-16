@@ -48,7 +48,7 @@ class Tx_Helperkit_ViewHelpers_DynLinkViewHelper extends Tx_Fluid_Core_ViewHelpe
 	/**
 	 * @var array
 	 */
-	protected $paramLabels = array();
+	protected $paramLabels = array('href', 'target', 'class', 'title');
 
 
 	/**
@@ -61,7 +61,6 @@ class Tx_Helperkit_ViewHelpers_DynLinkViewHelper extends Tx_Fluid_Core_ViewHelpe
 		$this->registerUniversalTagAttributes();
 		$this->registerArgument('arguments', 'array', 'Given arguments by Fluid call as an array.');
 		$this->registerArgument('href', 'string', 'Link href.');
-		$this->paramLabels = array('href', 'target', 'class', 'title');
 	}
 
 	/**
