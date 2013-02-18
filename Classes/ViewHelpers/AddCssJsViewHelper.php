@@ -26,7 +26,7 @@
 
 /**
  *
- * A view helper for adding CSS and JS files to teh frontend.
+ * A view helper for adding CSS and JS files to the frontend.
  *
  * This helper needs to be called once per file.
  * It is not possible to add multiple files via array or such, yet.
