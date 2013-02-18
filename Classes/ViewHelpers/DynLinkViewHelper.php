@@ -4,6 +4,7 @@
  *  Copyright notice
  *
  *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>
+ *  (c) 2012-2013 Simon Rauterberg <rauterberg@goldland-media.com>
  *
  *  All rights reserved
  *
@@ -34,6 +35,7 @@
  * </fs:DynLink>
  *
  * @author Andy Hausmann <ah@sota-studio.de>
+ * @author Simon Rauterberg <rauterberg@goldland-media.com>
  * @package helperkit
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
