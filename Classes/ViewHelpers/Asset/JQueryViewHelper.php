@@ -40,7 +40,7 @@
  * @package helperkit
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_AddJQueryViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper
+class Tx_Helperkit_ViewHelpers_Asset_JQueryViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper
 {
 
 	/**

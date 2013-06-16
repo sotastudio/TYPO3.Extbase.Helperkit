@@ -4,6 +4,7 @@
  *  Copyright notice
  *
  *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>
+ *  (c) 2012-2013 Xaver Maierhofer <xaver.maierhofer@xwissen.info>
  *
  *  All rights reserved
  *
@@ -26,38 +27,39 @@
 
 /**
  *
- * A view helper for adding CSS and JS files to the frontend.
- *
- * This helper needs to be called once per file.
- * It is not possible to add multiple files via array or such, yet.
+ * Renders Inline JS via PageRenderer and enables Plugins to throw it into external files,
+ * close to the ending body tag or just to special stuff with it, like concatenation, compression and such.
  *
  * = Examples =
  *
  * <code title="Single argument">
- * <hk:AddCssJs file="path/to/file.ext" />
+ * <fs:AddJsInline code="$();" name="unique-name" moveToFooter="0" />
  * </code>
  * <output>
  * </output>
  *
  * @author Andy Hausmann <ah@sota-studio.de>
- * @package helperkit
+ * @author Xaver Maierhofer <xaver.maierhofer@xwissen.info>
+ * @package fluidpages_singlepage
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_AddCssJsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+class Tx_Helperkit_ViewHelpers_Asset_JsInlineViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
 
 	/**
 	 * Adds JS and CSS to the frontend
 	 *
-	 * @param string $file
-	 * @param bool $moveToFooter
-	 * @return void Flag to include file into footer - doesn't work for CSS files
+	 * @param null  $code  The JS code
+	 * @param bool  $moveToFooter  Move the the ending body tag?
+	 * @param null  $uniqueLabel  Unique label in order to avoid multiple code blocks of the same code.
+	 * @return void
 	 */
 
-	public function render($file = NULL, $moveToFooter = FALSE)
+	public function render($code = null, $name = '', $moveToFooter = false)
 	{
-		if ($file) {
-			Tx_Helperkit_Utility_Div::addCssJsFile(
-				$file,
+		if ($code) {
+			Tx_FluidpagesSinglepage_Utility_Div::addJsInline(
+				$code,
+				$name,
 				$moveToFooter
 			);
 		}

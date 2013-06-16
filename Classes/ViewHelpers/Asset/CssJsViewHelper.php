@@ -3,8 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2013 Andy Hausmann <andy@sota-studio.de>
- *  (c) 2012-2013 Xaver Maierhofer <xaver.maierhofer@xwissen.info>
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>
  *
  *  All rights reserved
  *
@@ -27,39 +26,38 @@
 
 /**
  *
- * Renders Inline JS via PageRenderer and enables Plugins to throw it into external files,
- * close to the ending body tag or just to special stuff with it, like concatenation, compression and such.
+ * A view helper for adding CSS and JS files to teh frontend.
+ *
+ * This helper needs to be called once per file.
+ * It is not possible to add multiple files via array or such, yet.
  *
  * = Examples =
  *
  * <code title="Single argument">
- * <fs:AddJsInline code="$();" name="unique-name" moveToFooter="0" />
+ * <fs:AddCssJs file="path/to/file.ext" />
  * </code>
  * <output>
  * </output>
  *
- * @author Andy Hausmann <andy@sota-studio.de>
- * @author Xaver Maierhofer <xaver.maierhofer@xwissen.info>
- * @package flexslider
+ * @author Andy Hausmann <ah@sota-studio.de>
+ * @package fluidpages_singlepage
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_AddJsInlineViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper {
+class Tx_Helperkit_ViewHelpers_Asset_CssJsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
 
 	/**
 	 * Adds JS and CSS to the frontend
 	 *
-	 * @param null  $code  The JS code
-	 * @param bool  $moveToFooter  Move the the ending body tag?
-	 * @param null  $uniqueLabel  Unique label in order to avoid multiple code blocks of the same code.
-	 * @return void
+	 * @param string $file
+	 * @param bool $moveToFooter
+	 * @return void Flag to include file into footer - doesn't work for CSS files
 	 */
 
-	public function render($code = null, $name = '', $moveToFooter = false)
+	public function render($file = NULL, $moveToFooter = FALSE)
 	{
-		if ($code) {
-			Tx_Helperkit_Utility_Div::addJsInline(
-				$code,
-				$name,
+		if ($file) {
+			Tx_FluidpagesSinglepage_Utility_Div::addCssJsFile(
+				$file,
 				$moveToFooter
 			);
 		}
