@@ -28,29 +28,19 @@
 /**
  *
  * A view helper for dynamic rendering of links.
- * Pass a page uid, media link, etc. to this ViewHelper.
- *
- * <fs:DynLink arguments="{link: object}">
- *   Content to be wrapped (of course html and other ViewHelpers are allowed!)
- * </fs:DynLink>
  *
  * @author Andy Hausmann <ah@sota-studio.de>
  * @author Simon Rauterberg <rauterberg@goldland-media.com>
- * @package helperkit
+ * @package widget_references
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_DynLinkViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper
+class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
 
 	/**
 	 * @var string
 	 */
 	protected $tagName = 'a';
-
-	/**
-	 * @var array
-	 */
-	protected $paramLabels = array('href', 'target', 'class', 'title');
 
 
 	/**
@@ -60,10 +50,12 @@ class Tx_Helperkit_ViewHelpers_DynLinkViewHelper extends Tx_Fluid_Core_ViewHelpe
 	 */
 	public function initializeArguments()
 	{
+		parent::initializeArguments();
 		$this->registerUniversalTagAttributes();
-		$this->registerArgument('arguments', 'array', 'Given arguments by Fluid call as an array.');
-		$this->registerArgument('href', 'string', 'Link href.');
+		$this->registerArgument('respectArguments', 'boolean', 'If TRUE the via ViewHelper given link attributes are NOT being overriden by the values set via link wizard. By default they are, so the given arguments are normally treated as some kind of placeholder values. This applies for target, class and title.', false, false);
+		$this->registerTagAttribute('href', 'string', 'The Hyperlink.', true, null);
 	}
+
 
 	/**
 	 * Workaround for parent::setArguments().
@@ -78,8 +70,30 @@ class Tx_Helperkit_ViewHelpers_DynLinkViewHelper extends Tx_Fluid_Core_ViewHelpe
 	 * @return void
 	 */
 	public function setArgumentsFromArray(array $arguments) {
-		$this->arguments = $arguments;
+		foreach ($arguments as $k => $v) {
+			if ($k == 'class') {
+				$this->arguments[$k] .= ' ' . $v;
+			} else {
+				$this->arguments[$k] = $v;
+			}
+		}
+
 	}
+
+
+	/**
+	 * Get the name of this form element.
+	 * Either returns arguments['name'], or the correct name for Object Access.
+	 *
+	 * In case property is something like bla.blubb (hierarchical), then [bla][blubb] is generated.
+	 *
+	 * @return string Name
+	 */
+	protected function getHref() {
+		$href = $this->arguments['href'];
+		return $href;
+	}
+
 
 	/**
 	 * Checks and processes the given link parameters.
@@ -87,29 +101,31 @@ class Tx_Helperkit_ViewHelpers_DynLinkViewHelper extends Tx_Fluid_Core_ViewHelpe
 	 * @param string $link Output from TYPO3 link wizard.
 	 * @return bool Returns true if it is possible to build a link.
 	 */
-	protected function processLinkParams($link)
+	protected function resolveWizardLink($link)
 	{
-		$paramDataArr = explode(' ', $link);
+		$linkAttributeModel = array('href', 'target', 'class', 'title');
+
+		$linkAttributeData = explode(' ', $link, count($linkAttributeModel));
 		// Combine labels and values into one array
-		$paramDataArr = Tx_Helperkit_Utility_Div::combineArray($this->paramLabels, $paramDataArr, false);
+		$linkData = Tx_WidgetReferences_Utility_Div::combineArray($linkAttributeModel, $linkAttributeData, false);
 
-		if (isset($paramDataArr['href']) && !empty($paramDataArr['href'])) {
+		if (isset($linkData['href']) && !empty($linkData['href'])) {
 			// Save link data into ViewHelper arguments
-			$this->setArgumentsFromArray($paramDataArr);
 
-			$cObj = t3lib_div::makeInstance('tslib_cObj');
+			$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
 			$configuration = array(
 				'parameter' => $this->arguments['href'],
 				'returnLast' => true
 			);
-			$href = $cObj->typolink('', $configuration);
-			$this->arguments['href'] = $href;
+			$linkData['href'] = $cObj->typolink('', $configuration);
+			$this->setArgumentsFromArray($linkData);
 
 			return true;
 		} else {
 			return false;
 		}
 	}
+
 
 	/**
 	 * Adds attributes to the tag builder if they're not empty.
@@ -118,14 +134,13 @@ class Tx_Helperkit_ViewHelpers_DynLinkViewHelper extends Tx_Fluid_Core_ViewHelpe
 	 */
 	protected function addTagAttributes()
 	{
-		foreach ($this->paramLabels as $label) {
-			if (isset($this->arguments[$label])
-				&& !empty($this->arguments[$label]))
-			{
-				$this->tag->addAttribute($label, $this->arguments[$label]);
+		foreach (array('href', 'target', 'class', 'title') as $attributeName) {
+			if (isset($this->arguments[$attributeName]) && !empty($this->arguments[$attributeName])) {
+				$this->tag->addAttribute($attributeName, $this->arguments[$attributeName]);
 			}
 		}
 	}
+
 
 	/**
 	 * ViewHelper Bootstrap.
@@ -134,9 +149,9 @@ class Tx_Helperkit_ViewHelpers_DynLinkViewHelper extends Tx_Fluid_Core_ViewHelpe
 	 */
 	public function render()
 	{
-		if ($this->processLinkParams($this->arguments['arguments']['link'])) {
-			$this->tag->setContent($this->renderChildren());
+		if ($this->resolveWizardLink($this->getHref())) {
 			$this->addTagAttributes();
+			$this->tag->setContent($this->renderChildren());
 			return $this->tag->render();
 		} else {
 			return $this->renderChildren();
