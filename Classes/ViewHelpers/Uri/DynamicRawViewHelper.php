@@ -33,7 +33,7 @@
  * @package helperkit
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_FluidcontentTools_ViewHelpers_DynamicLinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class Tx_Helperkit_ViewHelpers_Uri_DynamicRawViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
 	/**
