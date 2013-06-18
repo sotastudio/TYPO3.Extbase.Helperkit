@@ -39,8 +39,9 @@
  * <output>
  * </output>
  *
- * @author Andy Hausmann <ah@sota-studio.de>
- * @package fluidpages_singlepage
+ * @author Andy Hausmann <ah@sota-studio.de>, sota studio
+ * @package helperkit
+ * @subpackage ViewHelpers\Asset
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class Tx_Helperkit_ViewHelpers_Asset_CssJsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {

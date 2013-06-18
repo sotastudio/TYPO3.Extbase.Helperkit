@@ -3,8 +3,8 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>
- *  (c) 2012-2013 Xaver Maierhofer <xaver.maierhofer@xwissen.info>
+ *  (c) 2012-2013 Andy Hausmann <andy@sota-studio.de>
+ *  (c) 2012-2013 Simon Rauterberg <rauterberg@goldland-media.com>
  *
  *  All rights reserved
  *
@@ -27,42 +27,44 @@
 
 /**
  *
- * Renders Inline JS via PageRenderer and enables Plugins to throw it into external files,
- * close to the ending body tag or just to special stuff with it, like concatenation, compression and such.
- *
- * = Examples =
- *
- * <code title="Single argument">
- * <fs:AddJsInline code="$();" name="unique-name" moveToFooter="0" />
- * </code>
- * <output>
- * </output>
+ * A view helper for dynamic rendering of links.
  *
  * @author Andy Hausmann <ah@sota-studio.de>, sota studio
- * @author Xaver Maierhofer <xaver.maierhofer@xwissen.info>
  * @package helperkit
- * @subpackage ViewHelpers\Asset
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Asset_JsInlineViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
+class Tx_FluidcontentTools_ViewHelpers_DynamicLinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
 
 	/**
-	 * Adds JS and CSS to the frontend
-	 *
-	 * @param null  $code  The JS code
-	 * @param bool  $moveToFooter  Move the the ending body tag?
-	 * @param null  $uniqueLabel  Unique label in order to avoid multiple code blocks of the same code.
 	 * @return void
 	 */
+	public function initializeArguments() {
+		parent::initializeArguments();
+		$this->registerArgument('target', 'string', 'Via Link Wizard generated target.');
+	}
 
-	public function render($code = null, $name = '', $moveToFooter = false)
+
+	/**
+	 * ViewHelper Bootstrap.
+	 *
+	 * @return mixed|void
+	 */
+	public function render()
 	{
-		if ($code) {
-			Tx_FluidpagesSinglepage_Utility_Div::addJsInline(
-				$code,
-				$name,
-				$moveToFooter
+		$target = $this->arguments['target'];
+
+		if (isset($target) && !empty($target)) {
+			$cObj = t3lib_div::makeInstance('tslib_cObj');
+			$configuration = array(
+				'parameter' => $target,
+				'returnLast' => true
 			);
+			$href = $cObj->typolink('', $configuration);
+
+			return $href;
+		} else {
+			return '';
 		}
 	}
 }

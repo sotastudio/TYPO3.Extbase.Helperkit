@@ -27,8 +27,9 @@
 /**
  * Helper Class which makes debugging tools available
  *
- * @author Andy Hausmann <ah@sota-studio.de>
+ * @author Andy Hausmann <ah@sota-studio.de>, sota studio
  * @package helperkit
+ * @suboackage Classes\Utility
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class Tx_Helperkit_Utility_Debug

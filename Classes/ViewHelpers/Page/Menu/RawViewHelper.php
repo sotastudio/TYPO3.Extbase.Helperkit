@@ -30,9 +30,9 @@
  *
  * Just returns an array of the pages.
  *
- * @author Andy Hausmann <fromeme@dreipunktnull.com>, dreipunktnull
- * @package fluidpages_singlepage
- * @subpackage ViewHelpers\Page
+ * @author Andy Hausmann <ah@sota-studio.de>, sota studio
+ * @package helperkit
+ * @subpackage ViewHelpers\Page\Menu
  */
 class Tx_Helperkit_ViewHelpers_Page_Menu_RawViewHelper extends Tx_Vhs_ViewHelpers_Page_Menu_AbstractMenuViewHelper {
 

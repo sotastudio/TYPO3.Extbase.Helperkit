@@ -29,9 +29,9 @@
  *
  * A view helper for dynamic rendering of links.
  *
- * @author Andy Hausmann <ah@sota-studio.de>
+ * @author Andy Hausmann <ah@sota-studio.de>, sota studio
  * @author Simon Rauterberg <rauterberg@goldland-media.com>
- * @package widget_references
+ * @package helperkit
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper

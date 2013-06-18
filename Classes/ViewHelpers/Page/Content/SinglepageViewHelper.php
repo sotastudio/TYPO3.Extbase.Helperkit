@@ -35,8 +35,8 @@
  * with each page record.
  *
  * @author Andy Hausmann <ah@sota-studio.de>, sota studio
- * @package fluidpages_singlepage
- * @subpackage ViewHelpers\Page
+ * @package helperkit
+ * @subpackage ViewHelpers\Page\Content
  */
 class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {

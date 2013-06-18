@@ -28,9 +28,10 @@
 /**
  * Helper Class which makes various tools and helper available
  *
- * @author Andy Hausmann <ah@sota-studio.de>
+ * @author Andy Hausmann <ah@sota-studio.de>, sota studio
  * @author Xaver Maierhofer <xaver.maierhofer@xwissen.info>
  * @package helperkit
+ * @suboackage Classes\Utility
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class Tx_Helperkit_Utility_Div
