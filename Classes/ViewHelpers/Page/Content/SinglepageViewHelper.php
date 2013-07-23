@@ -37,6 +37,7 @@
  * @author Andy Hausmann <ah@sota-studio.de>, sota studio
  * @package helperkit
  * @subpackage ViewHelpers\Page\Content
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {

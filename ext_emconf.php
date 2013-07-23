@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array (
 	'description' => 'An extension providing a set of specially formatted Fluid templates usable as page templates enabled by EXT:fluidpages',
 	'category' => 'misc',
 	'shy' => 0,
-	'version' => '2.0.2',
+	'version' => '2.0.4',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
@@ -34,15 +34,16 @@ $EM_CONF[$_EXTKEY] = array (
 	'CGLcompliance_note' => NULL,
 	'constraints' => 
 	array (
-		'depends' => 
-		array (
+		'depends' => array (
 			'typo3' => '6.0-0.0.0',
 			'cms' => '',
 			'fluid' => '',
 		),
 		'conflicts' => '',
-		'suggests' => 
-		array (
+		'suggests' => array(
+			'flux' => '',
+			'fluidpages' => '',
+			'vhs' => '',
 		),
 	),
 );

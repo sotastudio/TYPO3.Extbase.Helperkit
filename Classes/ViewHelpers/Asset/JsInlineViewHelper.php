@@ -58,7 +58,7 @@ class Tx_Helperkit_ViewHelpers_Asset_JsInlineViewHelper extends \TYPO3\CMS\Fluid
 	public function render($code = null, $name = '', $moveToFooter = false)
 	{
 		if ($code) {
-			Tx_FluidpagesSinglepage_Utility_Div::addJsInline(
+			Tx_Helperkit_Utility_Div::addJsInline(
 				$code,
 				$name,
 				$moveToFooter

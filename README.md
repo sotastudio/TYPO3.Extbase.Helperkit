@@ -1,5 +1,7 @@
 # TYPO3 Extbase HelperKit
 
+EXT:helperkit
+
 
 ## What is this Repo about
 

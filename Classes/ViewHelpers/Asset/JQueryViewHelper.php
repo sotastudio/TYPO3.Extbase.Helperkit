@@ -26,15 +26,7 @@
 
 /**
  *
- * A view helper for adding jQuery to the frontend.
- *
- * = Examples =
- *
- * <code title="Single argument">
- * <hk:AddJQuery altJQueryFile="path/to/alternativeJQueryFile.js" />
- * </code>
- * <output>
- * </output>
+ * A ViewHelper for adding jQuery to the frontend.
  *
  * @author Andy Hausmann <ah@sota-studio.de>, sota studio
  * @package helperkit
@@ -73,7 +65,7 @@ class Tx_Helperkit_ViewHelpers_Asset_JQueryViewHelper extends Tx_Fluid_Core_View
 				Tx_Helperkit_Utility_Div::renderFlashMessage(
 					'jQuery not loaded',
 					'jQuery could not be loaded. Please check the path to the alternative jQuery library or simply use the Extension t3jquery.',
-					t3lib_FlashMessage::ERROR
+					\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
 				);
 			}
 		}

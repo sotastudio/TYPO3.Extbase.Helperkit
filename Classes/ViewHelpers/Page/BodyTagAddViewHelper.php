@@ -31,12 +31,6 @@
  * This helper needs to be called once per file.
  * It is not possible to add multiple files via array or such, yet.
  *
- * -- Example:
- *
- * <hk:page.bodyTagAdd class="className" />
- *
- * --
- *
  * @author Andy Hausmann <ah@sota-studio.de>, sota studio
  * @package helperkit
  * @subpackage ViewHelpers\Page

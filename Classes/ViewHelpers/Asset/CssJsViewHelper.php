@@ -31,14 +31,6 @@
  * This helper needs to be called once per file.
  * It is not possible to add multiple files via array or such, yet.
  *
- * = Examples =
- *
- * <code title="Single argument">
- * <fs:AddCssJs file="path/to/file.ext" />
- * </code>
- * <output>
- * </output>
- *
  * @author Andy Hausmann <ah@sota-studio.de>, sota studio
  * @package helperkit
  * @subpackage ViewHelpers\Asset
@@ -57,7 +49,7 @@ class Tx_Helperkit_ViewHelpers_Asset_CssJsViewHelper extends \TYPO3\CMS\Fluid\Co
 	public function render($file = NULL, $moveToFooter = FALSE)
 	{
 		if ($file) {
-			Tx_FluidpagesSinglepage_Utility_Div::addCssJsFile(
+			Tx_Helperkit_Utility_Div::addCssJsFile(
 				$file,
 				$moveToFooter
 			);
