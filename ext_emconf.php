@@ -1,9 +1,9 @@
 <?php
 
 /***************************************************************
- * Extension Manager/Repository config file for ext "fluidpages_bootstrap2".
+ * Extension Manager/Repository config file for ext "helperkit".
  *
- * Auto generated 23-04-2013 23:27
+ * Auto generated 31-07-2013 19:22
  *
  * Manual updates:
  * Only the data in the array - everything else is removed by next
@@ -15,9 +15,9 @@ $EM_CONF[$_EXTKEY] = array (
 	'description' => 'An extension providing a set of Fluid ViewHelper and Extbase Utilities.',
 	'category' => 'misc',
 	'shy' => 0,
-	'version' => '2.0.5',
+	'version' => '2.1.0',
 	'dependencies' => 'extbase,fluid',
-	'conflicts' => '',
+	'conflicts' => NULL,
 	'priority' => '',
 	'loadOrder' => '',
 	'module' => '',
@@ -34,17 +34,22 @@ $EM_CONF[$_EXTKEY] = array (
 	'CGLcompliance_note' => NULL,
 	'constraints' => 
 	array (
-		'depends' => array (
+		'depends' => 
+		array (
 			'typo3' => '6.0-0.0.0',
 			'extbase' => '1.3',
 			'fluid' => '1.3',
 		),
 		'conflicts' => '',
-		'suggests' => array(
+		'suggests' => 
+		array (
 			'flux' => '',
 			'fluidpages' => '',
 			'vhs' => '',
 		),
+	),
+	'suggests' => 
+	array (
 	),
 );
 
