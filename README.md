@@ -9,7 +9,7 @@ Basically: Extbase Extension Development. It is about Helper I've written or col
 
 For me this is some kind of best practice and kickstart - for you it doesn't have to be, but it may be.
 
-Take a look into this collection. It will be, of course, enhanced as often and much as my time allows. For now, I just have to migrate all my stuff into this package - be patient!
+Take a look into this collection. It will be, of course, enhanced as often and much as my time allows.
 
 
 ## Contribute
