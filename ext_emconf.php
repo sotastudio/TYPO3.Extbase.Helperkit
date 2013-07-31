@@ -11,8 +11,8 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array (
-	'title' => 'Collection of useful Helper for Fluid Templating and such.',
-	'description' => 'An extension providing a set of specially formatted Fluid templates usable as page templates enabled by EXT:fluidpages',
+	'title' => 'Helperkit for Fluid and Extbase Development.',
+	'description' => 'An extension providing a set of Fluid ViewHelper and Extbase Utilities.',
 	'category' => 'misc',
 	'shy' => 0,
 	'version' => '2.0.5',
