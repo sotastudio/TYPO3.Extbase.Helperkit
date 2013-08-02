@@ -3,7 +3,7 @@
 /***************************************************************
  * Extension Manager/Repository config file for ext "helperkit".
  *
- * Auto generated 31-07-2013 19:22
+ * Auto generated 02-08-2013 13:28
  *
  * Manual updates:
  * Only the data in the array - everything else is removed by next
@@ -27,8 +27,8 @@ $EM_CONF[$_EXTKEY] = array (
 	'modify_tables' => '',
 	'clearcacheonload' => 1,
 	'lockType' => '',
-	'author' => 'Andreas Walter',
-	'author_email' => 'aw@sota-studio.de',
+	'author' => 'Andy Hausmann',
+	'author_email' => 'ah@sota-studio.de',
 	'author_company' => 'sota studio',
 	'CGLcompliance' => NULL,
 	'CGLcompliance_note' => NULL,
@@ -36,7 +36,7 @@ $EM_CONF[$_EXTKEY] = array (
 	array (
 		'depends' => 
 		array (
-			'typo3' => '6.0-0.0.0',
+			'typo3' => '6.0-6.0.99',
 			'extbase' => '1.3',
 			'fluid' => '1.3',
 		),
