@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Andy Hausmann <ah@sota-studio.de>
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>, sota studio
  *
  *  All rights reserved
  *
@@ -36,9 +36,8 @@
  * @subpackage ViewHelpers\Page
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper
 {
-
 	/**
 	 * @var array List of arguments being ignored by the later on rendering process.
 	 */
@@ -56,7 +55,8 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 	 * @param $argument
 	 * @return void
 	 */
-	private function excludeArgument($argument) {
+	private function excludeArgument($argument)
+	{
 		array_push($this->excludedArguments, $argument);
 	}
 
@@ -66,7 +66,8 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 	 * @param array $arguments
 	 * @return void
 	 */
-	private function excludeArguments(array $arguments) {
+	private function excludeArguments(array $arguments)
+	{
 		foreach ($arguments as $argument) {
 			$this->excludeArgument($argument);
 		}
@@ -79,7 +80,8 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 	 * @param boolean $escapeSpecialCharacters apply htmlspecialchars to argument values
 	 * @return void
 	 */
-	private function addArguments(array $arguments, $escapeSpecialCharacters = true) {
+	private function addArguments(array $arguments, $escapeSpecialCharacters = true)
+	{
 		foreach ($arguments as $argumentName => $argumentValue) {
 			$this->addArgument($argumentName, $argumentValue, $escapeSpecialCharacters);
 		}
@@ -93,7 +95,8 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 	 * @param boolean $escapeSpecialCharacters apply htmlspecialchars to argument value
 	 * @return void
 	 */
-	private function addArgument($argumentName, $argumentValue, $escapeSpecialCharacters = true) {
+	private function addArgument($argumentName, $argumentValue, $escapeSpecialCharacters = true)
+	{
 		if ($escapeSpecialCharacters) {
 			$argumentValue = htmlspecialchars($argumentValue);
 		}
@@ -106,9 +109,10 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 	 * @param $attributeName
 	 * @return string
 	 */
-	public function getCurrentValue($attributeName) {
+	public function getCurrentValue($attributeName)
+	{
 		$str = $this->bodyTagAdd;
-		if(strstr($str, $attributeName)) {
+		if (strstr($str, $attributeName)) {
 			$l = explode($attributeName . "=\"", $str);
 			$r = explode("\"", $l[1]);
 			return $r[0];
@@ -122,13 +126,13 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 	 *
 	 * @return string
 	 */
-	public function getContent() {
+	public function getContent()
+	{
 		$merge = ($this->arguments['override'] !== true && !empty($this->bodyTagAdd)) ? true : false;
 
 		$o = '';
 		foreach ($this->arguments as $argumentName => $argumentValue) {
-			if (!in_array($argumentName, $this->excludedArguments))
-			{
+			if (!in_array($argumentName, $this->excludedArguments)) {
 				if ($merge) {
 					$argumentValue = $this->getCurrentValue($argumentName) . ' ' . $argumentValue;
 				}
@@ -143,7 +147,8 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 	/**
 	 * @return void
 	 */
-	public function initialize() {
+	public function initialize()
+	{
 		parent::initialize();
 		$this->bodyTagAdd =& $GLOBALS['TSFE']->pSetup['bodyTagAdd'];
 	}
@@ -151,18 +156,19 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 	/**
 	 * @return void
 	 */
-	public function initializeArguments() {
+	public function initializeArguments()
+	{
 		parent::initializeArguments();
 		$this->registerArgument('override', 'boolean', 'If set, everything already defined will be overridden.', false, false);
-		$this->registerArgument('class', 'string', 'CSS class(es) for this element',false );
-		$this->registerArgument('dir', 'string', 'Text direction for this HTML element. Allowed strings: "ltr" (left to right), "rtl" (right to left)',false );
-		$this->registerArgument('id', 'string', 'Unique (in this file) identifier for this HTML element.',false );
-		$this->registerArgument('lang', 'string', 'Language for this element. Use short names specified in RFC 1766',false );
-		$this->registerArgument('style', 'string', 'Individual CSS styles for this element',false );
-		$this->registerArgument('title', 'string', 'Tooltip text of element',false );
-		$this->registerArgument('accesskey', 'string', 'Keyboard shortcut to access this element',false );
-		$this->registerArgument('tabindex', 'integer', 'Specifies the tab order of this element',false );
-		$this->registerArgument('onclick', 'string', 'JavaScript evaluated for the onclick event',false );
+		$this->registerArgument('class', 'string', 'CSS class(es) for this element', false);
+		$this->registerArgument('dir', 'string', 'Text direction for this HTML element. Allowed strings: "ltr" (left to right), "rtl" (right to left)', false);
+		$this->registerArgument('id', 'string', 'Unique (in this file) identifier for this HTML element.', false);
+		$this->registerArgument('lang', 'string', 'Language for this element. Use short names specified in RFC 1766', false);
+		$this->registerArgument('style', 'string', 'Individual CSS styles for this element', false);
+		$this->registerArgument('title', 'string', 'Tooltip text of element', false);
+		$this->registerArgument('accesskey', 'string', 'Keyboard shortcut to access this element', false);
+		$this->registerArgument('tabindex', 'integer', 'Specifies the tab order of this element', false);
+		$this->registerArgument('onclick', 'string', 'JavaScript evaluated for the onclick event', false);
 		$this->registerArgument('additionalAttributes', 'array', 'Additional body attributes. They will be added directly to the resulting HTML string.', false);
 		$this->excludeArguments(array('override', 'additionalAttributes'));
 	}
@@ -184,4 +190,3 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 		$this->bodyTagAdd = $this->getContent();
 	}
 }
-?>

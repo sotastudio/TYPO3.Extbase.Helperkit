@@ -1,8 +1,9 @@
 <?php
+
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Andy Hausmann <ah@sota-studio.de>, sota studio
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>, sota studio
  *
  *  All rights reserved
  *
@@ -39,7 +40,7 @@
  * @subpackage ViewHelpers\Page\Content
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper
 {
 
 	/**
@@ -87,7 +88,8 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	 * @param \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
 	 * @return void
 	 */
-	public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager) {
+	public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager)
+	{
 		$this->objectManager = $objectManager;
 		$this->arguments = $this->objectManager->create('TYPO3\\CMS\\Extbase\\Mvc\\Controller\\Arguments');
 	}
@@ -95,7 +97,8 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	/**
 	 * @param Tx_Fluidpages_Service_PageService $pageService
 	 */
-	public function injectPageService(Tx_Fluidpages_Service_PageService $pageService) {
+	public function injectPageService(Tx_Fluidpages_Service_PageService $pageService)
+	{
 		$this->pageService = $pageService;
 	}
 
@@ -103,7 +106,8 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	 * @param Tx_Fluidpages_Service_ConfigurationService $configurationService
 	 * @return void
 	 */
-	public function injectConfigurationService(Tx_Fluidpages_Service_ConfigurationService $configurationService) {
+	public function injectConfigurationService(Tx_Fluidpages_Service_ConfigurationService $configurationService)
+	{
 		$this->configurationService = $configurationService;
 	}
 
@@ -111,7 +115,8 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	 * @param Tx_Flux_Service_FlexForm $flexFormService
 	 * @return void
 	 */
-	public function injectFlexFormService(Tx_Flux_Service_FlexForm $flexformService) {
+	public function injectFlexFormService(Tx_Flux_Service_FlexForm $flexformService)
+	{
 		$this->flexFormService = $flexformService;
 	}
 
@@ -119,14 +124,16 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	 * @param Tx_Flux_Provider_ConfigurationService $providerConfigurationService
 	 * @return void
 	 */
-	public function injectProviderConfigurationService(Tx_Flux_Provider_ConfigurationService $providerConfigurationService) {
+	public function injectProviderConfigurationService(Tx_Flux_Provider_ConfigurationService $providerConfigurationService)
+	{
 		$this->providerConfigurationService = $providerConfigurationService;
 	}
 
 	/**
 	 * @return void
 	 */
-	public function initializeArguments() {
+	public function initializeArguments()
+	{
 		parent::initializeArguments();
 		$this->registerArgument('limit', 'integer', 'Optional limit to the number of content elements to render');
 		$this->registerArgument('showHidden', 'boolean', 'Include "hidden in menu" pages', FALSE, FALSE);
@@ -144,10 +151,11 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	 * Initialize object
 	 * @return void
 	 */
-	public function initializeObject() {
+	public function initializeObject()
+	{
 		if (is_array($GLOBALS['TSFE']->fe_user->user) === TRUE) {
 			$groups = array(-2, 0);
-			$groups = array_merge($groups, (array) array_values($GLOBALS['TSFE']->fe_user->groupData['uid']));
+			$groups = array_merge($groups, (array)array_values($GLOBALS['TSFE']->fe_user->groupData['uid']));
 		} else {
 			$groups = array(-1, 0);
 		}
@@ -160,7 +168,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 			array_push($clauses, $clause);
 		}
 		array_push($clauses, "fe_group = '' OR fe_group = '0'");
-		$this->pageSelect->where_groupAccess = ' AND (' . implode(' OR ', $clauses) .  ')';
+		$this->pageSelect->where_groupAccess = ' AND (' . implode(' OR ', $clauses) . ')';
 	}
 
 	/**
@@ -168,7 +176,8 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	 * @param array $rootLine
 	 * @return array
 	 */
-	protected function getMenuItemEntry($page, $rootLine) {
+	protected function getMenuItemEntry($page, $rootLine)
+	{
 		$getLL = $GLOBALS['TSFE']->sys_language_uid;
 		$pageUid = $page['uid'];
 		if ($this->arguments['useShortcutData'] && $page['doktype'] == constant('t3lib_pageSelect::DOKTYPE_SHORTCUT')) {
@@ -206,7 +215,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 			}
 		}
 		$doktype = $page['doktype'];
-		if ($getLL){
+		if ($getLL) {
 			$pageOverlay = $this->pageSelect->getPageOverlay($pageUid, $getLL);
 			foreach ($pageOverlay as $name => $value) {
 				if (empty($value) === FALSE) {
@@ -225,7 +234,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 			}
 		}
 		$shortcut = ($doktype == constant('t3lib_pageSelect::DOKTYPE_SHORTCUT')) ? $page['shortcut'] : $page['url'];
-		$page['doktype'] = (integer) $doktype;
+		$page['doktype'] = (integer)$doktype;
 
 		if ($doktype == 3) {
 			$urlTypes = array(
@@ -245,7 +254,8 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	 *
 	 * @return array
 	 */
-	protected function allowedDoktypeList() {
+	protected function allowedDoktypeList()
+	{
 		if (TRUE === isset($this->arguments['doktypes']) && FALSE === empty($this->arguments['doktypes'])) {
 			if (TRUE === is_array($this->arguments['doktypes'])) {
 				$types = $this->arguments['doktypes'];
@@ -278,7 +288,8 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	 * @param array $rootLine
 	 * @return array
 	 */
-	protected function parseMenu($menu, $rootLine) {
+	protected function parseMenu($menu, $rootLine)
+	{
 		$filtered = array();
 		$allowedDocumentTypes = $this->allowedDoktypeList();
 		foreach ($menu as $page) {
@@ -308,7 +319,8 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	 *
 	 * @return array
 	 */
-	public function processPagesArgument() {
+	public function processPagesArgument()
+	{
 		$pages = $this->arguments['pages'];
 		if ($pages instanceof Traversable) {
 			$pages = iterator_to_array($pages);
@@ -328,7 +340,8 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	 *
 	 * @return mixed
 	 */
-	public function renderPage($uid) {
+	public function renderPage($uid)
+	{
 		$row = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('*', 'pages', 'uid=' . $uid);
 		$row = $row[0];
 
@@ -368,7 +381,8 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	 *
 	 * @return mixed
 	 */
-	public function render() {
+	public function render()
+	{
 		if (TYPO3_MODE == 'BE') {
 			return '';
 		}
@@ -392,12 +406,11 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 				//$output .= '<' . $sectionTag . ' id="' . $id . '">' . $this->getContentRecords($menuItem['uid']) .'</' . $sectionTag . '>';
 
 				$content = $this->renderPage($menuItem['uid']);
-				$output .= '<' . $sectionTag . ' id="' . $id . '">' . $content .'</' . $sectionTag . '>';
+				$output .= '<' . $sectionTag . ' id="' . $id . '">' . $content . '</' . $sectionTag . '>';
 				//\TYPO3\CMS\Core\Utility\DebugUtility::debug($curPage);
 			}
 		}
 
 		return $output;
 	}
-
 }

@@ -1,8 +1,9 @@
 <?php
+
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Andy Hausmann <ah@sota-studio.de>, sota studio
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>, sota studio
  *
  *  All rights reserved
  *
@@ -39,12 +40,14 @@
  * @subpackage ViewHelpers\Page\Menu
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Page_Menu_SinglepageViewHelper extends Tx_Vhs_ViewHelpers_Page_Menu_DirectoryViewHelper {
+class Tx_Helperkit_ViewHelpers_Page_Menu_SinglepageViewHelper extends Tx_Vhs_ViewHelpers_Page_Menu_DirectoryViewHelper
+{
 
 	/**
 	 * @return void
 	 */
-	public function initializeArguments() {
+	public function initializeArguments()
+	{
 		parent::initializeArguments();
 		$this->registerArgument('hashPrefix', 'string', 'Field to use for prefixing the hash link', FALSE, 'onepage-pageid-');
 		$this->registerArgument('hashField', 'string', 'Field to use for building the hash link', FALSE, 'uid');
@@ -57,7 +60,8 @@ class Tx_Helperkit_ViewHelpers_Page_Menu_SinglepageViewHelper extends Tx_Vhs_Vie
 	 * @param integer $level
 	 * @return string
 	 */
-	protected function autoRender($menu, $level = 1) {
+	protected function autoRender($menu, $level = 1)
+	{
 		# Overrides
 		$level = 1;
 

@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>, sota studio
  *
  *  All rights reserved
  *
@@ -74,7 +74,7 @@ class Tx_Helperkit_Utility_EmConfiguration
 	 */
 	protected static function overrideExtKey($extKey)
 	{
-		$extKey = (string) trim($extKey);
+		$extKey = (string)trim($extKey);
 		if (strlen($extKey)) {
 			self::setExtKey($extKey);
 		}

@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>, sota studio
  *
  *  All rights reserved
  *
@@ -42,7 +42,8 @@ class Tx_Helperkit_Utility_TypoScript
 	 * @param mixed $pageID ID of the page to search within the rootline - defaults to the current page if empty.
 	 * @return mixed The id of the givel rootline level.
 	 */
-	public static function getLevelUid($level, $pageID = null) {
+	public static function getLevelUid($level, $pageID = null)
+	{
 		if (!is_numeric($pageID)) {
 			$pageID = $GLOBALS['TSFE']->id;
 		}

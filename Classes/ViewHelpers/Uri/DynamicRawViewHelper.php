@@ -3,8 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2013 Andy Hausmann <andy@sota-studio.de>
- *  (c) 2012-2013 Simon Rauterberg <rauterberg@goldland-media.com>
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>, sota studio
  *
  *  All rights reserved
  *
@@ -33,17 +32,16 @@
  * @package helperkit
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Uri_DynamicRawViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class Tx_Helperkit_ViewHelpers_Uri_DynamicRawViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper
 {
-
 	/**
 	 * @return void
 	 */
-	public function initializeArguments() {
+	public function initializeArguments()
+	{
 		parent::initializeArguments();
 		$this->registerArgument('target', 'string', 'Via Link Wizard generated target.');
 	}
-
 
 	/**
 	 * ViewHelper Bootstrap.
@@ -68,4 +66,3 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicRawViewHelper extends \TYPO3\CMS\Fluid
 		}
 	}
 }
-?>

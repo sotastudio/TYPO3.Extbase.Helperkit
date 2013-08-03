@@ -1,8 +1,9 @@
 <?php
+
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Andy Hausmann <ah@sota-studio.de>
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>, sota studio
  *
  *  All rights reserved
  *
@@ -35,12 +36,14 @@
  * @subpackage ViewHelpers\Page\Menu
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Page_Menu_RawViewHelper extends Tx_Vhs_ViewHelpers_Page_Menu_AbstractMenuViewHelper {
+class Tx_Helperkit_ViewHelpers_Page_Menu_RawViewHelper extends Tx_Vhs_ViewHelpers_Page_Menu_AbstractMenuViewHelper
+{
 
 	/**
 	 * @return void
 	 */
-	public function initializeArguments() {
+	public function initializeArguments()
+	{
 		parent::initializeArguments();
 		$this->registerArgument('pages', 'mixed', 'Parent page UIDs of subpages to include in the menu. Can be CSV, array or an object implementing Traversable.', TRUE);
 	}
@@ -50,7 +53,8 @@ class Tx_Helperkit_ViewHelpers_Page_Menu_RawViewHelper extends Tx_Vhs_ViewHelper
 	 *
 	 * @return string
 	 */
-	public function render() {
+	public function render()
+	{
 		$pages = $this->processPagesArgument();
 		if (NULL === $pages) {
 			return;

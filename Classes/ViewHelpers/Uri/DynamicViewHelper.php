@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>, sota studio
  *  (c) 2012-2013 Simon Rauterberg <rauterberg@goldland-media.com>
  *
  *  All rights reserved
@@ -34,9 +34,8 @@
  * @package helperkit
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper
 {
-
 	/**
 	 * @var string
 	 */
@@ -56,7 +55,6 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Co
 		$this->registerTagAttribute('href', 'string', 'The Hyperlink.', true, null);
 	}
 
-
 	/**
 	 * Workaround for parent::setArguments().
 	 *
@@ -69,7 +67,8 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Co
 	 * @param array $arguments
 	 * @return void
 	 */
-	public function setArgumentsFromArray(array $arguments) {
+	public function setArgumentsFromArray(array $arguments)
+	{
 		foreach ($arguments as $k => $v) {
 			if ($k == 'class') {
 				$this->arguments[$k] .= ' ' . $v;
@@ -80,7 +79,6 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Co
 
 	}
 
-
 	/**
 	 * Get the name of this form element.
 	 * Either returns arguments['name'], or the correct name for Object Access.
@@ -89,11 +87,11 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Co
 	 *
 	 * @return string Name
 	 */
-	protected function getHref() {
+	protected function getHref()
+	{
 		$href = $this->arguments['href'];
 		return $href;
 	}
-
 
 	/**
 	 * Checks and processes the given link parameters.
@@ -126,7 +124,6 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Co
 		}
 	}
 
-
 	/**
 	 * Adds attributes to the tag builder if they're not empty.
 	 *
@@ -140,7 +137,6 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Co
 			}
 		}
 	}
-
 
 	/**
 	 * ViewHelper Bootstrap.
@@ -158,4 +154,3 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Co
 		}
 	}
 }
-?>
