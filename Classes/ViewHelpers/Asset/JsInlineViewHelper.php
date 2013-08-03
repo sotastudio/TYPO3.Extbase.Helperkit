@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>, sota studio
  *  (c) 2012-2013 Xaver Maierhofer <xaver.maierhofer@xwissen.info>
  *
  *  All rights reserved
@@ -44,21 +44,20 @@
  * @subpackage ViewHelpers\Asset
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Asset_JsInlineViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
-
+class Tx_Helperkit_ViewHelpers_Asset_JsInlineViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper
+{
 	/**
 	 * Adds JS and CSS to the frontend
 	 *
-	 * @param null  $code  The JS code
-	 * @param bool  $moveToFooter  Move the the ending body tag?
-	 * @param null  $uniqueLabel  Unique label in order to avoid multiple code blocks of the same code.
+	 * @param null $code  The JS code
+	 * @param bool $moveToFooter  Move the the ending body tag?
+	 * @param null $uniqueLabel  Unique label in order to avoid multiple code blocks of the same code.
 	 * @return void
 	 */
-
 	public function render($code = null, $name = '', $moveToFooter = false)
 	{
 		if ($code) {
-			Tx_Helperkit_Utility_Div::addJsInline(
+			Tx_Helperkit_Utility_Page::addJsInline(
 				$code,
 				$name,
 				$moveToFooter
@@ -66,4 +65,3 @@ class Tx_Helperkit_ViewHelpers_Asset_JsInlineViewHelper extends \TYPO3\CMS\Fluid
 		}
 	}
 }
-?>

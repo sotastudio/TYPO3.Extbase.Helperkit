@@ -3,8 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>
- *  (c) 2012-2013 Xaver Maierhofer <xaver.maierhofer@xwissen.info>
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>, sota studio
  *
  *  All rights reserved
  *
@@ -29,13 +28,22 @@
  * Helper Class which makes various tools and helper available
  *
  * @author Andy Hausmann <ah@sota-studio.de>, sota studio
- * @author Xaver Maierhofer <xaver.maierhofer@xwissen.info>
  * @package helperkit
  * @suboackage Classes\Utility
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class Tx_Helperkit_Utility_Div
 {
+	/**
+	 * Returns the reference to a 'resource' in TypoScript.
+	 *
+	 * @param string $file File get a reference from - can contain EXT:ext_name
+	 * @return mixed
+	 */
+	public static function getFileResource($file)
+	{
+		return $GLOBALS['TSFE']->tmpl->getFileName($file);
+	}
 
 	/**
 	 * Better implementation of php's array_combine().
@@ -47,7 +55,8 @@ class Tx_Helperkit_Utility_Div
 	 * @param bool $pad Switch for allowing padding. Fills the combined array with empty values if any array is larger than the other one.
 	 * @return array Combined array.
 	 */
-	public static function combineArray($a, $b, $pad = true) {
+	public static function combineArray($a, $b, $pad = true)
+	{
 		$acount = count($a);
 		$bcount = count($b);
 		// more elements in $a than $b but we don't want to pad either
@@ -62,14 +71,14 @@ class Tx_Helperkit_Utility_Div
 				// how many fields are we missing at the end of the second array?
 				// Add empty strings to ensure arrays $a and $b have same number of elements
 				$more = $acount - $bcount;
-				for($i = 0; $i < $more; $i++) {
+				for ($i = 0; $i < $more; $i++) {
 					$b[] = "";
 				}
 				// more fields than headers
 			} else if ($acount < $bcount) {
 				$more = $bcount - $acount;
 				// fewer elements in the first array, add extra keys
-				for($i = 0; $i < $more; $i++) {
+				for ($i = 0; $i < $more; $i++) {
 					$key = 'extra_field_0' . $i;
 					$a[] = $key;
 				}
@@ -81,62 +90,6 @@ class Tx_Helperkit_Utility_Div
 	}
 
 	/**
-	 * Returns the reference to a 'resource' in TypoScript.
-	 *
-	 * @param string $file File get a reference from - can contain EXT:ext_name
-	 * @return mixed
-	 */
-	public static function getFileResource($file)
-	{
-		return $GLOBALS['TSFE']->tmpl->getFileName($file);
-	}
-
-	/**
-	 * Checks a passed CSS or JS file and adds it to the Frontend.
-	 *
-	 * @param string $file File reference
-	 * @param bool $moveToFooter Flag to include file into footer - doesn't work for CSS files
-	 */
-	public static function addCssJsFile($file, $moveToFooter = FALSE)
-	{
-		// Get file extension (after last occurance of a dot)
-		$mediaTypeSplit = strrchr($file, '.');
-		// Get file reference
-		$resolved = self::getFileResource($file);
-
-		if ($resolved) {
-			// JavaScript processing
-			if ($mediaTypeSplit == '.js') {
-				($moveToFooter)
-					? $GLOBALS['TSFE']->getPageRenderer()->addJsFooterFile($resolved)
-					: $GLOBALS['TSFE']->getPageRenderer()->addJsFile($resolved);
-
-				// Stylesheet processing
-			} elseif ($mediaTypeSplit == '.css') {
-				$GLOBALS['TSFE']->getPageRenderer()->addCssFile($resolved);
-			}
-		}
-	}
-
-	/**
-	 * Checks a passed CSS or JS file and adds it to the Frontend.
-	 *
-	 * @param string $script JS Block
-	 * @param string $addUnique Unique key to avoid multiple inclusions
-	 * @param bool $moveToFooter Flag to include file into footer - doesn't work for CSS files
-	 */
-	public static function addJsInline($code, $name, $moveToFooter = false)
-	{
-
-		if ($code) {
-			//$code = '<script type="text/javascript">'.$code.'</script>';
-			($moveToFooter)
-				? $GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode($name, $code)
-				: $GLOBALS['TSFE']->getPageRenderer()->addJsInlineCode($name, $code);
-		}
-	}
-
-	/**
 	 * Adds/renders a Flash message.
 	 *
 	 * @param string $title The title
@@ -144,15 +97,28 @@ class Tx_Helperkit_Utility_Div
 	 * @param int $type Message level
 	 * @return mixed
 	 */
-	public static function renderFlashMessage($title, $message, $type = t3lib_FlashMessage::WARNING) {
-		$code  = ".typo3-message .message-header{padding: 10px 10px 0 30px;font-size:0.9em;}";
+	public static function renderFlashMessage($title, $message, $type = t3lib_FlashMessage::WARNING)
+	{
+		$code = ".typo3-message .message-header{padding: 10px 10px 0 30px;font-size:0.9em;}";
 		$code .= ".typo3-message .message-body{padding: 10px;font-size:0.9em;}";
 
 		$GLOBALS['TSFE']->getPageRenderer()->addCssFile(t3lib_extMgm::siteRelPath('t3skin') . 'stylesheets/visual/element_message.css');
-		$GLOBALS['TSFE']->getPageRenderer()->addCssInlineBlock('flashmessage',$code);
+		$GLOBALS['TSFE']->getPageRenderer()->addCssInlineBlock('flashmessage', $code);
 
 		$flashMessage = t3lib_div::makeInstance('t3lib_FlashMessage', $message, $title, $type);
 		return $flashMessage->render();
+	}
+
+	/**
+	 * Checks whether the given url IS a url.
+	 * Though it doen't check the TLD.
+	 *
+	 * @param $url
+	 * @return bool
+	 */
+	public static function isUrl($url)
+	{
+		return (filter_var($url, FILTER_VALIDATE_URL)) ? true : false;
 	}
 
 }

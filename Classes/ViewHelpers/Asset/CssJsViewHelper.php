@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>, sota studio
  *
  *  All rights reserved
  *
@@ -36,24 +36,24 @@
  * @subpackage ViewHelpers\Asset
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Asset_CssJsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper {
-
+class Tx_Helperkit_ViewHelpers_Asset_CssJsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper
+{
 	/**
 	 * Adds JS and CSS to the frontend
 	 *
 	 * @param string $file
 	 * @param bool $moveToFooter
-	 * @return void Flag to include file into footer - doesn't work for CSS files
+	 * @param string $type Override for media type detection
+	 * @return void
 	 */
-
-	public function render($file = NULL, $moveToFooter = FALSE)
+	public function render($file = null, $moveToFooter = false, $type = null)
 	{
 		if ($file) {
-			Tx_Helperkit_Utility_Div::addCssJsFile(
+			Tx_Helperkit_Utility_Page::addCssJsFile(
 				$file,
-				$moveToFooter
+				$moveToFooter,
+				$type
 			);
 		}
 	}
 }
-?>

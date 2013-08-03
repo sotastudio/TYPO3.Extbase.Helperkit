@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>
+ *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>, sota studio
  *
  *  All rights reserved
  *
@@ -35,7 +35,6 @@
  */
 class Tx_Helperkit_ViewHelpers_Asset_JQueryViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper
 {
-
 	/**
 	 * Adds T3Jquery as Lib
 	 *
@@ -46,10 +45,11 @@ class Tx_Helperkit_ViewHelpers_Asset_JQueryViewHelper extends Tx_Fluid_Core_View
 	 * @param bool $moveToFooter
 	 * @return void
 	 */
-	public function render($altJQueryFile = NULL, $moveToFooter = FALSE) {
+	public function render($altJQueryFile = NULL, $moveToFooter = FALSE)
+	{
 		// checks if t3jquery is loaded
 		if (t3lib_extMgm::isLoaded('t3jquery')) {
-			require_once(t3lib_extMgm::extPath('t3jquery').'class.tx_t3jquery.php');
+			require_once(t3lib_extMgm::extPath('t3jquery') . 'class.tx_t3jquery.php');
 		}
 		// if t3jquery is loaded and the custom Library had been created
 		if (T3JQUERY === true) {
@@ -57,7 +57,7 @@ class Tx_Helperkit_ViewHelpers_Asset_JQueryViewHelper extends Tx_Fluid_Core_View
 
 		} else {
 			if ($altJQueryFile) {
-				Tx_Helperkit_Utility_Div::addCssJsFile(
+				Tx_Helperkit_Utility_Page::addCssJsFile(
 					$altJQueryFile,
 					$moveToFooter
 				);
@@ -71,4 +71,3 @@ class Tx_Helperkit_ViewHelpers_Asset_JQueryViewHelper extends Tx_Fluid_Core_View
 		}
 	}
 }
-?>
