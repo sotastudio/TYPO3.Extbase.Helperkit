@@ -42,9 +42,9 @@ class Tx_Helperkit_ViewHelpers_If_InArrayViewHelper extends Tx_Fluid_Core_ViewHe
 	 * @param bool $strict If set to true then the function will also check the types of the needle in the haystack.
 	 * @return string
 	 */
-	public function render($needle, $haystack, $strict = false)
+	public function render($needle, $haystack = null, $strict = false)
 	{
-		if ($haystack === '') {
+		if ($haystack == '' || $haystack == null) {
 			return '';
 		} else if (!is_array($haystack) === true) {
 			throw new Exception('Passed haystack needs to be an array.');
