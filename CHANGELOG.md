@@ -1,3 +1,9 @@
+### 2.2.1
+
+* _Bugfix_: Fixed If/InArrayViewHelper: Removed variable dump.
+* _Bugfix_: Fixed If/InArrayViewHelper: Made the haystack optional as empty passed var WILL be empty.
+* _Misc_: Corrected TYPO3 CMS version dependency (max) from 6.0.99 to 6.1.99
+
 ### 2.2.0
 
 * _Misc_: Code revision.
