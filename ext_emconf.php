@@ -43,8 +43,6 @@ $EM_CONF[$_EXTKEY] = array (
 		'conflicts' => '',
 		'suggests' => 
 		array (
-			'flux' => '',
-			'fluidpages' => '',
 			'vhs' => '',
 		),
 	),
