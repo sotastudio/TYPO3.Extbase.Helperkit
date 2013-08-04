@@ -44,7 +44,6 @@ class Tx_Helperkit_ViewHelpers_If_InArrayViewHelper extends Tx_Fluid_Core_ViewHe
 	 */
 	public function render($needle, $haystack, $strict = false)
 	{
-		var_dump($haystack);
 		if ($haystack === '') {
 			return '';
 		} else if (!is_array($haystack) === true) {
