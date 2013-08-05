@@ -1,3 +1,7 @@
+### 2.2.2
+
+* _Bugfix_: Fixed If/InArrayViewHelper: Renamed file like it should be names (camelCase -> UpperCamelCase).
+
 ### 2.2.1
 
 * _Bugfix_: Fixed If/InArrayViewHelper: Removed variable dump.
