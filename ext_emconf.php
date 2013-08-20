@@ -3,7 +3,7 @@
 /***************************************************************
  * Extension Manager/Repository config file for ext "helperkit".
  *
- * Auto generated 05-08-2013 12:44
+ * Auto generated 20-08-2013 19:47
  *
  * Manual updates:
  * Only the data in the array - everything else is removed by next
@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array (
 	'description' => 'An extension providing a set of Fluid ViewHelper and Extbase Utilities.',
 	'category' => 'misc',
 	'shy' => 0,
-	'version' => '2.2.2',
+	'version' => '2.2.4',
 	'dependencies' => 'extbase,fluid',
 	'conflicts' => NULL,
 	'priority' => '',
