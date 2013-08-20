@@ -36,6 +36,7 @@ This package contains a bunch of useful Utilities and ViewHelper:
 * Uri
   * **DynamicRaw**
   * **Dynamic**
+  * **Resolve**
 
 
 ## Roadmap

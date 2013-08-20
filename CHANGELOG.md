@@ -1,3 +1,7 @@
+### 2.2.3
+
+* _Feature_ Added Uri/ResolveViewHelper.
+
 ### 2.2.2
 
 * _Bugfix_: Fixed If/InArrayViewHelper: Renamed file like it should be names (camelCase -> UpperCamelCase).
