@@ -105,7 +105,7 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends Tx_Fluid_Core_ViewH
 
 		$linkAttributeData = explode(' ', $link, count($linkAttributeModel));
 		// Combine labels and values into one array
-		$linkData = Tx_WidgetReferences_Utility_Div::combineArray($linkAttributeModel, $linkAttributeData, false);
+		$linkData = Tx_Helperkit_Utility_Div::combineArray($linkAttributeModel, $linkAttributeData, false);
 
 		if (isset($linkData['href']) && !empty($linkData['href'])) {
 			// Save link data into ViewHelper arguments
