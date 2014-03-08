@@ -1,6 +1,15 @@
+### 2.3.0
+
+* _Feature_: Revised Utilities.
+* _Feature_: Added Format/DateViewHelper.
+* _Feature_: Added Object/DistinctValuesViewHelper.
+* _Feature_: Added Object/FilterObjectsViewHelper.
+* _Feature_: Added Page/LanguageMenuViewHelper.
+* _Misc_: Updated copyrights.
+
 ### 2.2.3
 
-* _Feature_ Added Uri/ResolveViewHelper.
+* _Feature_: Added Uri/ResolveViewHelper.
 
 ### 2.2.2
 
