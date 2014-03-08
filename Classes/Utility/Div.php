@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>, sota studio
+ *  (c) 2012-2014 Andy Hausmann <ah@sota-studio.de>, sota studio
  *
  *  All rights reserved
  *
@@ -43,50 +43,6 @@ class Tx_Helperkit_Utility_Div
 	public static function getFileResource($file)
 	{
 		return $GLOBALS['TSFE']->tmpl->getFileName($file);
-	}
-
-	/**
-	 * Better implementation of php's array_combine().
-	 * This wont throw false in case both array haven't an identical size.
-	 *
-	 * @static
-	 * @param array $a Array containing the keys.
-	 * @param array $b Array containing the values.
-	 * @param bool $pad Switch for allowing padding. Fills the combined array with empty values if any array is larger than the other one.
-	 * @return array Combined array.
-	 */
-	public static function combineArray($a, $b, $pad = true)
-	{
-		$acount = count($a);
-		$bcount = count($b);
-		// more elements in $a than $b but we don't want to pad either
-		if (!$pad) {
-			$size = ($acount > $bcount) ? $bcount : $acount;
-			$a = array_slice($a, 0, $size);
-			$b = array_slice($b, 0, $size);
-		} else {
-			// more headers than row fields
-			if ($acount > $bcount) {
-				$more = $acount - $bcount;
-				// how many fields are we missing at the end of the second array?
-				// Add empty strings to ensure arrays $a and $b have same number of elements
-				$more = $acount - $bcount;
-				for ($i = 0; $i < $more; $i++) {
-					$b[] = "";
-				}
-				// more fields than headers
-			} else if ($acount < $bcount) {
-				$more = $bcount - $acount;
-				// fewer elements in the first array, add extra keys
-				for ($i = 0; $i < $more; $i++) {
-					$key = 'extra_field_0' . $i;
-					$a[] = $key;
-				}
-
-			}
-		}
-
-		return array_combine($a, $b);
 	}
 
 	/**

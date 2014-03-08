@@ -25,44 +25,42 @@
  ***************************************************************/
 
 /**
- *
- * A view helper for dynamic rendering of links.
+ * Returns an array of distinct values.
  *
  * @author Andy Hausmann <ah@sota-studio.de>, sota studio
  * @package helperkit
+ * @subpackage ViewHelpers\Page
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Uri_DynamicRawViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper
+class Tx_Helperkit_ViewHelpers_Object_DistinctValuesViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper
 {
-	/**
-	 * @return void
-	 */
-	public function initializeArguments()
-	{
-		parent::initializeArguments();
-		$this->registerArgument('target', 'string', 'Via Link Wizard generated target.');
-	}
 
-	/**
-	 * ViewHelper Bootstrap.
-	 *
-	 * @return mixed|void
-	 */
-	public function render()
-	{
-		$target = $this->arguments['target'];
+    /**
+     * @param mixed $object
+     * @param string $property
+     * @param string $as
+     * @param string $sort
+     * @return mixed
+     */
+    public function render($object, $property, $as, $sort = 'asc')
+    {
+        if (!in_array($sort, Array('asc', 'desc'))) $sort = 'asc';
 
-		if (isset($target) && !empty($target)) {
-			$cObj = t3lib_div::makeInstance('tslib_cObj');
-			$configuration = array(
-				'parameter' => $target,
-				'returnLast' => true
-			);
-			$href = $cObj->typolink('', $configuration);
+        $propertyPath = explode('.', $property);
+        $values = array();
 
-			return $href;
-		} else {
-			return '';
-		}
-	}
+        foreach($object as $item) {
+            $values[] = Tx_Helperkit_Utility_Array::getValueFromPath($item, $propertyPath);
+        }
+
+        $values = array_unique($values);
+        ($sort == 'asc') ? sort($values) : rsort($values);
+
+        $this->templateVariableContainer->add($as, $values);
+        $output = $this->renderChildren();
+        $this->templateVariableContainer->remove($as);
+
+        return $output;
+
+    }
 }

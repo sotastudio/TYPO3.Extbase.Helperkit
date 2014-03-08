@@ -25,44 +25,39 @@
  ***************************************************************/
 
 /**
- *
- * A view helper for dynamic rendering of links.
+ * Returns an array of filtered objects.
  *
  * @author Andy Hausmann <ah@sota-studio.de>, sota studio
  * @package helperkit
+ * @subpackage ViewHelpers\Page
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Uri_DynamicRawViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper
+class Tx_Helperkit_ViewHelpers_Object_FilterObjectsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper
 {
-	/**
-	 * @return void
-	 */
-	public function initializeArguments()
-	{
-		parent::initializeArguments();
-		$this->registerArgument('target', 'string', 'Via Link Wizard generated target.');
-	}
 
-	/**
-	 * ViewHelper Bootstrap.
-	 *
-	 * @return mixed|void
-	 */
-	public function render()
-	{
-		$target = $this->arguments['target'];
+    /**
+     * @param mixed $object
+     * @param array $filter
+     * @param string $as
+     * @return mixed
+     */
+    public function render($object, $filter, $as)
+    {
+        $propertyPath = explode('.', $filter[0]);
+        $filterValue = $filter[1];
 
-		if (isset($target) && !empty($target)) {
-			$cObj = t3lib_div::makeInstance('tslib_cObj');
-			$configuration = array(
-				'parameter' => $target,
-				'returnLast' => true
-			);
-			$href = $cObj->typolink('', $configuration);
+        $i = 0;
+        foreach($object as &$item) {
+            $i++;
+            $itemValue = Tx_Helperkit_Utility_Array::getValueFromPath($item, $propertyPath);
+            if($itemValue != $filterValue) unset($object[$i]);
+        }
 
-			return $href;
-		} else {
-			return '';
-		}
-	}
+        $this->templateVariableContainer->add($as, $object);
+        $output = $this->renderChildren();
+        $this->templateVariableContainer->remove($as);
+
+        return $output;
+
+    }
 }

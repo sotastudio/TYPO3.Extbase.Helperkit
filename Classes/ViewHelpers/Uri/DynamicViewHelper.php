@@ -3,8 +3,8 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2013 Andy Hausmann <ah@sota-studio.de>, sota studio
- *  (c) 2012-2013 Simon Rauterberg <rauterberg@goldland-media.com>
+ *  (c) 2012-2014 Andy Hausmann <ah@sota-studio.de>, sota studio
+ *  (c) 2012-2014 Simon Rauterberg <rauterberg@goldland-media.com>
  *
  *  All rights reserved
  *
@@ -105,7 +105,7 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends Tx_Fluid_Core_ViewH
 
 		$linkAttributeData = explode(' ', $link, count($linkAttributeModel));
 		// Combine labels and values into one array
-		$linkData = Tx_Helperkit_Utility_Div::combineArray($linkAttributeModel, $linkAttributeData, false);
+		$linkData = Tx_Helperkit_Utility_Array::combineArray($linkAttributeModel, $linkAttributeData, false);
 
 		if (isset($linkData['href']) && !empty($linkData['href'])) {
 			// Save link data into ViewHelper arguments
