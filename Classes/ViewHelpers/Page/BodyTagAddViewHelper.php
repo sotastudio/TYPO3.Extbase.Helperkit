@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2014 Andy Hausmann <ah@sota-studio.de>, sota studio
+ *  (c) 2012-2014 Andy Hausmann <ah@sota-studio.de>, SOTA Studio
  *
  *  All rights reserved
  *
@@ -31,7 +31,7 @@
  * This helper needs to be called once per file.
  * It is not possible to add multiple files via array or such, yet.
  *
- * @author Andy Hausmann <ah@sota-studio.de>, sota studio
+ * @author Andy Hausmann <ah@sota-studio.de>, SOTA Studio
  * @package helperkit
  * @subpackage ViewHelpers\Page
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later

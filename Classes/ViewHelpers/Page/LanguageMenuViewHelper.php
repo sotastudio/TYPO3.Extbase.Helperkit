@@ -28,7 +28,7 @@
  * Require the extension static_info_table
  *
  * @author Dominic Garms, DMFmedia GmbH
- * @author Andy Hausmann <ah@sota-studio.de>, sota studio
+ * @author Andy Hausmann <ah@sota-studio.de>, SOTA Studio
  * @package helperkit
  * @subpackage ViewHelpers\Page
  */

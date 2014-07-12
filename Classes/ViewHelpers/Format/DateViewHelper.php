@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2014 Andy Hausmann <ah@sota-studio.de>, sota studio
+ *  (c) 2012-2014 Andy Hausmann <ah@sota-studio.de>, SOTA Studio
  *
  *  All rights reserved
  *
@@ -58,7 +58,7 @@
  * 2013-06-12T15:19:21+00:00
  * </output>
  *
- * @author Andy Hausmann <ah@sota-studio.de>, sota studio
+ * @author Andy Hausmann <ah@sota-studio.de>, SOTA Studio
  * @package helperkit
  * @subpackage ViewHelpers\Format
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later

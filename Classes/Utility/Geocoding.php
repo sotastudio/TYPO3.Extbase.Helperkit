@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2014 Andy Hausmann <ah@sota-studio.de>, sota studio
+ *  (c) 2012-2014 Andy Hausmann <ah@sota-studio.de>, SOTA Studio
  *
  *  All rights reserved
  *
@@ -27,7 +27,7 @@
 /**
  * Helper Class which makes various tools and helper available
  *
- * @author Andy Hausmann <ah@sota-studio.de>, sota studio
+ * @author Andy Hausmann <ah@sota-studio.de>, SOTA Studio
  * @package helperkit
  * @suboackage Classes\Utility
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later

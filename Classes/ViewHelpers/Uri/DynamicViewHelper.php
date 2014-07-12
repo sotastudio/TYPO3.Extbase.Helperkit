@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2014 Andy Hausmann <ah@sota-studio.de>, sota studio
+ *  (c) 2012-2014 Andy Hausmann <ah@sota-studio.de>, SOTA Studio
  *  (c) 2012-2014 Simon Rauterberg <rauterberg@goldland-media.com>
  *
  *  All rights reserved
@@ -29,7 +29,7 @@
  *
  * A view helper for dynamic rendering of links.
  *
- * @author Andy Hausmann <ah@sota-studio.de>, sota studio
+ * @author Andy Hausmann <ah@sota-studio.de>, SOTA Studio
  * @author Simon Rauterberg <rauterberg@goldland-media.com>
  * @package helperkit
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later

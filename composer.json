@@ -1,0 +1,8 @@
+ {
+     "name": "sotastudio/helperkit",
+     "description": "An extension providing a set of Fluid ViewHelper and Extbase Utilities.",
+     "require": {
+         "fluidtypo3/vhs": "*"
+     },
+     "type": "typo3-cms-extension"
+  }

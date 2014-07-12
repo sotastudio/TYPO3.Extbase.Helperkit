@@ -3,7 +3,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2012-2014 Andy Hausmann <ah@sota-studio.de>, sota studio
+ *  (c) 2012-2014 Andy Hausmann <ah@sota-studio.de>, SOTA Studio
  *  (c) 2012-2014 Xaver Maierhofer <xaver.maierhofer@xwissen.info>
  *
  *  All rights reserved
@@ -38,7 +38,7 @@
  * <output>
  * </output>
  *
- * @author Andy Hausmann <ah@sota-studio.de>, sota studio
+ * @author Andy Hausmann <ah@sota-studio.de>, SOTA Studio
  * @author Xaver Maierhofer <xaver.maierhofer@xwissen.info>
  * @package helperkit
  * @subpackage ViewHelpers\Asset
