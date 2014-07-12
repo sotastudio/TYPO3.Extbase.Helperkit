@@ -1,3 +1,7 @@
+### 2.4.0
+
+* _Misc_: Compatibility udpdate to 6.1-6.2.
+
 ### 2.3.0
 
 * _Feature_: Revised Utilities.
