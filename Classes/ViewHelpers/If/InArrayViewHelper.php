@@ -40,6 +40,7 @@ class Tx_Helperkit_ViewHelpers_If_InArrayViewHelper extends Tx_Fluid_Core_ViewHe
 	 * @param mixed $needle The searched value.
 	 * @param mixed $haystack The array.
 	 * @param bool $strict If set to true then the function will also check the types of the needle in the haystack.
+	 * @throws Exception In case the $needle is not present.
 	 * @return string
 	 */
 	public function render($needle, $haystack = null, $strict = false)
