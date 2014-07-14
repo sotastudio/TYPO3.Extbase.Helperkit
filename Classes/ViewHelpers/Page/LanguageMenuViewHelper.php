@@ -31,6 +31,7 @@
  * @author Andy Hausmann <ah@sota-studio.de>, SOTA Studio
  * @package helperkit
  * @subpackage ViewHelpers\Page
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class Tx_Helperkit_ViewHelpers_Page_LanguageMenuViewHelper extends Tx_Vhs_ViewHelpers_Page_LanguageMenuViewHelper  {
 
