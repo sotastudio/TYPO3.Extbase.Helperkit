@@ -75,7 +75,6 @@ class Tx_Helperkit_Utility_Array
         } else {
             // more headers than row fields
             if ($acount > $bcount) {
-                $more = $acount - $bcount;
                 // how many fields are we missing at the end of the second array?
                 // Add empty strings to ensure arrays $a and $b have same number of elements
                 $more = $acount - $bcount;

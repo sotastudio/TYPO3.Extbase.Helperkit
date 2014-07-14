@@ -32,7 +32,7 @@
  * @subpackage ViewHelpers\If
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_If_InArrayViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractConditionViewHelper
+class Tx_Helperkit_ViewHelpers_If_InArrayViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 	/**
 	 * Render method

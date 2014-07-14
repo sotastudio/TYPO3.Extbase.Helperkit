@@ -63,7 +63,7 @@
  * @subpackage ViewHelpers\Format
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Format_DateViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_Helperkit_ViewHelpers_Format_DateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Render the supplied DateTime object as a formatted date.
@@ -72,8 +72,8 @@ class Tx_Helperkit_ViewHelpers_Format_DateViewHelper extends Tx_Fluid_Core_ViewH
 	 * @param string $format Format String which is taken to format the Date/Time
 	 * @param bool $currentDate if true, the current date is used
 	 * @param bool $strftime if true, the strftime is used instead of date()
+	 * @throws Exception
 	 * @return string Formatted date
-	 * @throws Tx_Fluid_Core_ViewHelper_Exception
 	 */
 	public function render($date = NULL, $format = '%Y-%m-%d', $currentDate = FALSE, $strftime = TRUE) {
 		if ($currentDate) {
@@ -94,11 +94,10 @@ class Tx_Helperkit_ViewHelpers_Format_DateViewHelper extends Tx_Fluid_Core_ViewH
 			try {
 				$date = new DateTime($date);
 			} catch (Exception $exception) {
-				throw new Tx_Fluid_Core_ViewHelper_Exception('"' . $date . '" could not be parsed by DateTime constructor.', 1241722579);
+				throw new Exception('"' . $date . '" could not be parsed by DateTime constructor.', 1241722579);
 			}
 		}
 
-		$formattedDate = '';
 		if ($strftime) {
 			$formattedDate = strftime($format, $date->format('U'));
 		} else {

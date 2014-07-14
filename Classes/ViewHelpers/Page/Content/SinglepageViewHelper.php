@@ -40,8 +40,13 @@
  * @subpackage ViewHelpers\Page\Content
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper
+class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
+
+	/**
+	 * @var \TYPO3\CMS\Frontend\Page\PageRepository#
+	 */
+	public $pageSelect;
 
 	/**
 	 * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
@@ -91,7 +96,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends Tx_Flui
 	public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager)
 	{
 		$this->objectManager = $objectManager;
-		$this->arguments = $this->objectManager->create('TYPO3\\CMS\\Extbase\\Mvc\\Controller\\Arguments');
+		$this->arguments = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Mvc\\Controller\\Arguments');
 	}
 
 	/**
@@ -112,7 +117,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends Tx_Flui
 	}
 
 	/**
-	 * @param Tx_Flux_Service_FlexForm $flexFormService
+	 * @param Tx_Flux_Service_FlexForm $flexformService
 	 * @return void
 	 */
 	public function injectFlexFormService(Tx_Flux_Service_FlexForm $flexformService)
@@ -159,7 +164,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends Tx_Flui
 		} else {
 			$groups = array(-1, 0);
 		}
-		$this->pageSelect = new t3lib_pageSelect();
+		$this->pageSelect = new \TYPO3\CMS\Frontend\Page\PageRepository();
 		//$this->pageSelect->init((boolean) $this->arguments['showHidden']);
 		$clauses = array();
 		foreach ($groups as $group) {
@@ -226,7 +231,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends Tx_Flui
 			$page = $this->pageSelect->getPage($pageUid);
 		}
 		$title = $page['title'];
-		$titleFieldList = t3lib_div::trimExplode(',', $this->arguments['titleFields']);
+		$titleFieldList = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->arguments['titleFields']);
 		foreach ($titleFieldList as $titleFieldName) {
 			if (empty($page[$titleFieldName]) === FALSE) {
 				$title = $page[$titleFieldName];
@@ -260,7 +265,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends Tx_Flui
 			if (TRUE === is_array($this->arguments['doktypes'])) {
 				$types = $this->arguments['doktypes'];
 			} else {
-				$types = t3lib_div::trimExplode(',', $this->arguments['doktypes']);
+				$types = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->arguments['doktypes']);
 			}
 			foreach ($types as $index => $type) {
 				if (FALSE === ctype_digit($type)) {
@@ -325,7 +330,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends Tx_Flui
 		if ($pages instanceof Traversable) {
 			$pages = iterator_to_array($pages);
 		} elseif (is_string($pages)) {
-			$pages = t3lib_div::trimExplode(',', $pages, TRUE);
+			$pages = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $pages, TRUE);
 		}
 		if (FALSE === is_array($pages)) {
 			return array();
@@ -335,9 +340,8 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends Tx_Flui
 	}
 
 	/**
-	 * @param string
-	 * @param Tx_Extbase_MVC_View_ViewInterface $view
-	 *
+	 * @param string $uid
+	 * @throws Exception
 	 * @return mixed
 	 */
 	public function renderPage($uid)
@@ -346,7 +350,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends Tx_Flui
 		$row = $row[0];
 
 		$providers = $this->providerConfigurationService->resolveConfigurationProviders('pages', 'tx_fed_page_flexform', $row);
-		//$priority = 0;
+		$priority = 0;
 		/** @var $pageConfigurationProvider Tx_Fluidpages_Provider_PageConfigurationProvider */
 		$pageConfigurationProvider = NULL;
 		foreach ($providers as $provider) {
@@ -362,7 +366,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends Tx_Flui
 		$flexformData = $pageConfigurationProvider->getFlexFormValues($row);
 		$templatePathAndFilename = $provider->getTemplatePathAndFilename($row);
 
-		$view = $this->objectManager->create('Tx_Fluid_View_StandaloneView');
+		$view = $this->objectManager->get('Tx_Fluid_View_StandaloneView');
 		$view->setFormat('html');
 		$view->setTemplatePathAndFilename($templatePathAndFilename);
 		$view->setLayoutRootPath($paths['layoutRootPath']);
@@ -390,7 +394,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends Tx_Flui
 		$hashPrefix = $this->arguments['hashPrefix'];
 		$hashField = $this->arguments['hashField'];
 		$pages = $this->processPagesArgument();
-		if (NULL === $pages) return;
+		if (NULL === $pages) return '';
 
 		$menuData = array();
 		$rootLineData = $this->pageSelect->getRootLine($GLOBALS['TSFE']->id);
@@ -407,7 +411,6 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends Tx_Flui
 
 				$content = $this->renderPage($menuItem['uid']);
 				$output .= '<' . $sectionTag . ' id="' . $id . '">' . $content . '</' . $sectionTag . '>';
-				//\TYPO3\CMS\Core\Utility\DebugUtility::debug($curPage);
 			}
 		}
 

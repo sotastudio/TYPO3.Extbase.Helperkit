@@ -35,7 +35,7 @@
  * @subpackage ViewHelpers\Uri
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper
+class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
 	/**
 	 * @var string

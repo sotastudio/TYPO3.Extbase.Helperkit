@@ -30,7 +30,7 @@
  * @author Dominic Garms, DMFmedia GmbH
  * @author Andy Hausmann <ah@sota-studio.de>, SOTA Studio
  * @package helperkit
- * @subpackage ViewHelpers\Page
+ * @subpackage ViewHelpers\Page\C
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class Tx_Helperkit_ViewHelpers_Page_LanguageMenuViewHelper extends Tx_Vhs_ViewHelpers_Page_LanguageMenuViewHelper  {
@@ -63,8 +63,8 @@ class Tx_Helperkit_ViewHelpers_Page_LanguageMenuViewHelper extends Tx_Vhs_ViewHe
      * @return array
      */
     protected function parseLanguageMenu() {
-        $order = ($this->arguments['order']) ? t3lib_div::trimExplode(',', $this->arguments['order']) : '';
-        $labelOverwrite = ($this->arguments['labelOverwrite']) ? t3lib_div::trimExplode(',', $this->arguments['labelOverwrite']) : '';
+        $order = ($this->arguments['order']) ? \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->arguments['order']) : '';
+        $labelOverwrite = ($this->arguments['labelOverwrite']) ? \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->arguments['labelOverwrite']) : '';
 
         $tempArray = $languageMenu = array();
 
@@ -138,7 +138,7 @@ class Tx_Helperkit_ViewHelpers_Page_LanguageMenuViewHelper extends Tx_Vhs_ViewHe
      * @return string
      */
     protected function getLanguageUrl($uid) {
-        $getValues = t3lib_div::_GET();
+        $getValues = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET();
         $getValues['L'] = $uid;
         $currentPage = $this->arguments['pageUid'];
         unset($getValues['id']);

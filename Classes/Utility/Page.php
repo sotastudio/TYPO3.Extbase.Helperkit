@@ -149,8 +149,8 @@ class Tx_Helperkit_Utility_Page
 	/**
 	 * Checks a passed CSS or JS file and adds it to the Frontend.
 	 *
-	 * @param string $script JS Block
-	 * @param string $addUnique Unique key to avoid multiple inclusions
+	 * @param string $code JS Block
+	 * @param string $name Unique key to avoid multiple inclusions
 	 * @param bool $moveToFooter Flag to include file into footer - doesn't work for CSS files
 	 */
 	public static function addJsInline($code, $name = '', $moveToFooter = false)

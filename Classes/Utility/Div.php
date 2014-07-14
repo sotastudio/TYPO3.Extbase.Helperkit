@@ -53,15 +53,15 @@ class Tx_Helperkit_Utility_Div
 	 * @param int $type Message level
 	 * @return mixed
 	 */
-	public static function renderFlashMessage($title, $message, $type = t3lib_FlashMessage::WARNING)
+	public static function renderFlashMessage($title, $message, $type = \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING)
 	{
 		$code = ".typo3-message .message-header{padding: 10px 10px 0 30px;font-size:0.9em;}";
 		$code .= ".typo3-message .message-body{padding: 10px;font-size:0.9em;}";
 
-		$GLOBALS['TSFE']->getPageRenderer()->addCssFile(t3lib_extMgm::siteRelPath('t3skin') . 'stylesheets/visual/element_message.css');
+		$GLOBALS['TSFE']->getPageRenderer()->addCssFile(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('t3skin') . 'stylesheets/visual/element_message.css');
 		$GLOBALS['TSFE']->getPageRenderer()->addCssInlineBlock('flashmessage', $code);
 
-		$flashMessage = t3lib_div::makeInstance('t3lib_FlashMessage', $message, $title, $type);
+		$flashMessage = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_FlashMessage', $message, $title, $type);
 		return $flashMessage->render();
 	}
 

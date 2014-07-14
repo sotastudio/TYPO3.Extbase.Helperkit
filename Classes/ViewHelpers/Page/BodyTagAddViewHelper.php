@@ -36,7 +36,7 @@
  * @subpackage ViewHelpers\Page
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper
+class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 	/**
 	 * @var array List of arguments being ignored by the later on rendering process.
@@ -176,9 +176,7 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends Tx_Fluid_Core_V
 	/**
 	 * Adds JS and CSS to the frontend
 	 *
-	 * @param string $file
-	 * @param bool $moveToFooter
-	 * @return void Flag to include file into footer - doesn't work for CSS files
+	 * @return void
 	 */
 
 	public function render()

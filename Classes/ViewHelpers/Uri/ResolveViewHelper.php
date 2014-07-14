@@ -33,7 +33,7 @@
  * @subpackage ViewHelpers\Uri
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Uri_ResolveViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper
+class Tx_Helperkit_ViewHelpers_Uri_ResolveViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 	/**
 	 * @return void

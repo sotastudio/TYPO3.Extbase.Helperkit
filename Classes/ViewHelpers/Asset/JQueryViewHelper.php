@@ -33,7 +33,7 @@
  * @subpackage ViewHelpers\Asset
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Asset_JQueryViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractTagBasedViewHelper
+class Tx_Helperkit_ViewHelpers_Asset_JQueryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
 	/**
 	 * Adds T3Jquery as Lib
@@ -48,8 +48,8 @@ class Tx_Helperkit_ViewHelpers_Asset_JQueryViewHelper extends Tx_Fluid_Core_View
 	public function render($altJQueryFile = NULL, $moveToFooter = FALSE)
 	{
 		// checks if t3jquery is loaded
-		if (t3lib_extMgm::isLoaded('t3jquery')) {
-			require_once(t3lib_extMgm::extPath('t3jquery') . 'class.tx_t3jquery.php');
+		if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('t3jquery')) {
+			require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('t3jquery') . 'class.tx_t3jquery.php');
 		}
 		// if t3jquery is loaded and the custom Library had been created
 		if (T3JQUERY === true) {

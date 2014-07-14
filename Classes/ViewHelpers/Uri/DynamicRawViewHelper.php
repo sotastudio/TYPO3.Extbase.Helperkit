@@ -33,7 +33,7 @@
  * @subpackage ViewHelpers\Uri
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Uri_DynamicRawViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper
+class Tx_Helperkit_ViewHelpers_Uri_DynamicRawViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 	/**
 	 * @return void
@@ -54,7 +54,7 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicRawViewHelper extends Tx_Fluid_Core_Vi
 		$target = $this->arguments['target'];
 
 		if (isset($target) && !empty($target)) {
-			$cObj = t3lib_div::makeInstance('tslib_cObj');
+			$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_cObj');
 			$configuration = array(
 				'parameter' => $target,
 				'returnLast' => true
