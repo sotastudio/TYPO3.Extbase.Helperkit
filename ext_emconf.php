@@ -16,9 +16,11 @@ $EM_CONF[$_EXTKEY] = array(
 		'depends' => array(
 			'typo3' => '6.1.0-6.2.99',
 			'cms' => '',
-			'vhs' => '',
 		),
 		'conflicts' => array(),
-		'suggests' => array(),
+		'suggests' => array(
+			'vhs' => '',
+			'fluidpages' => '',
+		),
 	),
 );
