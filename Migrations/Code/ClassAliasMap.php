@@ -1,0 +1,28 @@
+<?php
+
+return array(
+	'Tx_Helperkit_Utility_Array' => 'SotaStudio\\Helperkit\\Utility\\Arr',
+	'Tx_Helperkit_Utility_Arr' => 'SotaStudio\\Helperkit\\Utility\\Arr',
+	'SotaStudio\\Helperkit\\Utility\\Array'	=> 'SotaStudio\\Helperkit\\Utility\\Arr',
+	'Tx_Helperkit_Utility_Debug' => 'SotaStudio\\Helperkit\\Utility\\Debug',
+	'Tx_Helperkit_Utility_Div' => 'SotaStudio\\Helperkit\\Utility\\Div',
+	'Tx_Helperkit_Utility_EmConfiguration' => 'SotaStudio\\Helperkit\\Utility\\EmConfiguration',
+	'Tx_Helperkit_Utility_Geocoding' => 'SotaStudio\\Helperkit\\Utility\\Geocoding',
+	'Tx_Helperkit_Utility_Page' => 'SotaStudio\\Helperkit\\Utility\\Page',
+	'Tx_Helperkit_Utility_TypoScript' => 'SotaStudio\\Helperkit\\Utility\\TypoScript',
+	'Tx_Helperkit_ViewHelpers_Asset_CssJsViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\Asset\\CssJsViewHelper',
+	'Tx_Helperkit_ViewHelpers_Asset_JQueryViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\Asset\\JQueryViewHelper',
+	'Tx_Helperkit_ViewHelpers_Asset_JsInlineViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\Asset\\JsInlineViewHelper',
+	'Tx_Helperkit_ViewHelpers_Format_DateViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\Format\\DateViewHelper',
+	'Tx_Helperkit_ViewHelpers_If_InArrayViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\If\\InArrayViewHelper',
+	'Tx_Helperkit_ViewHelpers_Object_DistinctValuesViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\Object\\DistinctValuesViewHelper',
+	'Tx_Helperkit_ViewHelpers_Object_FilterObjectsViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\Object\\FilterObjectsViewHelper',
+	'Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\Page\\Content\\SinglepageViewHelper',
+	'Tx_Helperkit_ViewHelpers_Page_Menu_RawViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\Page\\Menu\\RawViewHelper',
+	'Tx_Helperkit_ViewHelpers_Page_Menu_SinglepageViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\Page\\Menu\\SinglepageViewHelper',
+	'Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\Page\\BodyTagAddViewHelper',
+	'Tx_Helperkit_ViewHelpers_Page_LanguageMenuViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\Page\\LanguageMenuViewHelper',
+	'Tx_Helperkit_ViewHelpers_Uri_DynamicRawViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\Uri\\DynamicRawViewHelper',
+	'Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\Uri\\DynamicViewHelper',
+	'Tx_Helperkit_ViewHelpers_Uri_ResolveViewHelper' => 'SotaStudio\\Helperkit\\ViewHelpers\\Uri\\ResolveViewHelper',
+);
