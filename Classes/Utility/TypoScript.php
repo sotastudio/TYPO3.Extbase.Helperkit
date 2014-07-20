@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\Utility;
 /***************************************************************
  *  Copyright notice
  *
@@ -32,17 +32,17 @@
  * @subpackage Classes\Utility
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_Utility_TypoScript
-{
+class TypoScript {
 
 	/**
 	 * Returns the Page ID of the given rootline level.
 	 *
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @param mixed $level Level of the rootline layer.
 	 * @param mixed $pageID ID of the page to search within the rootline - defaults to the current page if empty.
 	 * @return mixed The id of the givel rootline level.
 	 */
-	public static function getLevelUid($level, $pageID = null)
+	public static function getLevelUid($level, $pageID = NULL)
 	{
 		if (!is_numeric($pageID)) {
 			$pageID = $GLOBALS['TSFE']->id;

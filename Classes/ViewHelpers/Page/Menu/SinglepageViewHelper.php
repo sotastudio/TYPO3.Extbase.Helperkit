@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\ViewHelpers\Page\Menu;
 /***************************************************************
  *  Copyright notice
  *
@@ -40,8 +40,7 @@
  * @subpackage ViewHelpers\Page\Menu
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Page_Menu_SinglepageViewHelper extends Tx_Vhs_ViewHelpers_Page_Menu_DirectoryViewHelper
-{
+class SinglepageViewHelper extends Tx_Vhs_ViewHelpers_Page_Menu_DirectoryViewHelper {
 
 	/**
 	 * @return void

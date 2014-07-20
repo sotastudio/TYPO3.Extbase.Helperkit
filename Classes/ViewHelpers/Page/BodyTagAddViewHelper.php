@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\ViewHelpers\Page;
 /***************************************************************
  *  Copyright notice
  *
@@ -24,6 +24,8 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 /**
  *
  * A view helper for adding CSS and JS files to teh frontend.
@@ -36,8 +38,8 @@
  * @subpackage ViewHelpers\Page
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
-{
+class BodyTagAddViewHelper extends AbstractViewHelper {
+
 	/**
 	 * @var array List of arguments being ignored by the later on rendering process.
 	 */
@@ -80,7 +82,7 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 	 * @param boolean $escapeSpecialCharacters apply htmlspecialchars to argument values
 	 * @return void
 	 */
-	private function addArguments(array $arguments, $escapeSpecialCharacters = true)
+	private function addArguments(array $arguments, $escapeSpecialCharacters = TRUE)
 	{
 		foreach ($arguments as $argumentName => $argumentValue) {
 			$this->addArgument($argumentName, $argumentValue, $escapeSpecialCharacters);
@@ -95,7 +97,7 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 	 * @param boolean $escapeSpecialCharacters apply htmlspecialchars to argument value
 	 * @return void
 	 */
-	private function addArgument($argumentName, $argumentValue, $escapeSpecialCharacters = true)
+	private function addArgument($argumentName, $argumentValue, $escapeSpecialCharacters = TRUE)
 	{
 		if ($escapeSpecialCharacters) {
 			$argumentValue = htmlspecialchars($argumentValue);
@@ -128,7 +130,7 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 	 */
 	public function getContent()
 	{
-		$merge = ($this->arguments['override'] !== true && !empty($this->bodyTagAdd)) ? true : false;
+		$merge = ($this->arguments['override'] !== TRUE && !empty($this->bodyTagAdd)) ? TRUE : FALSE;
 
 		$o = '';
 		foreach ($this->arguments as $argumentName => $argumentValue) {
@@ -136,7 +138,7 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 				if ($merge) {
 					$argumentValue = $this->getCurrentValue($argumentName) . ' ' . $argumentValue;
 				}
-				if (trim($argumentValue) !== '' && $argumentValue !== null) {
+				if (trim($argumentValue) !== '' && $argumentValue !== NULL) {
 					$o .= $argumentName . '="' . trim($argumentValue) . '" ';
 				}
 			}
@@ -145,6 +147,7 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 	}
 
 	/**
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @return void
 	 */
 	public function initialize()
@@ -159,17 +162,17 @@ class Tx_Helperkit_ViewHelpers_Page_BodyTagAddViewHelper extends \TYPO3\CMS\Flui
 	public function initializeArguments()
 	{
 		parent::initializeArguments();
-		$this->registerArgument('override', 'boolean', 'If set, everything already defined will be overridden.', false, false);
-		$this->registerArgument('class', 'string', 'CSS class(es) for this element', false);
-		$this->registerArgument('dir', 'string', 'Text direction for this HTML element. Allowed strings: "ltr" (left to right), "rtl" (right to left)', false);
-		$this->registerArgument('id', 'string', 'Unique (in this file) identifier for this HTML element.', false);
-		$this->registerArgument('lang', 'string', 'Language for this element. Use short names specified in RFC 1766', false);
-		$this->registerArgument('style', 'string', 'Individual CSS styles for this element', false);
-		$this->registerArgument('title', 'string', 'Tooltip text of element', false);
-		$this->registerArgument('accesskey', 'string', 'Keyboard shortcut to access this element', false);
-		$this->registerArgument('tabindex', 'integer', 'Specifies the tab order of this element', false);
-		$this->registerArgument('onclick', 'string', 'JavaScript evaluated for the onclick event', false);
-		$this->registerArgument('additionalAttributes', 'array', 'Additional body attributes. They will be added directly to the resulting HTML string.', false);
+		$this->registerArgument('override', 'boolean', 'If set, everything already defined will be overridden.', FALSE, FALSE);
+		$this->registerArgument('class', 'string', 'CSS class(es) for this element', FALSE);
+		$this->registerArgument('dir', 'string', 'Text direction for this HTML element. Allowed strings: "ltr" (left to right), "rtl" (right to left)', FALSE);
+		$this->registerArgument('id', 'string', 'Unique (in this file) identifier for this HTML element.', FALSE);
+		$this->registerArgument('lang', 'string', 'Language for this element. Use short names specified in RFC 1766', FALSE);
+		$this->registerArgument('style', 'string', 'Individual CSS styles for this element', FALSE);
+		$this->registerArgument('title', 'string', 'Tooltip text of element', FALSE);
+		$this->registerArgument('accesskey', 'string', 'Keyboard shortcut to access this element', FALSE);
+		$this->registerArgument('tabindex', 'integer', 'Specifies the tab order of this element', FALSE);
+		$this->registerArgument('onclick', 'string', 'JavaScript evaluated for the onclick event', FALSE);
+		$this->registerArgument('additionalAttributes', 'array', 'Additional body attributes. They will be added directly to the resulting HTML string.', FALSE);
 		$this->excludeArguments(array('override', 'additionalAttributes'));
 	}
 

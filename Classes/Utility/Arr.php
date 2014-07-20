@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\Utility;
 /***************************************************************
  *  Copyright notice
  *
@@ -32,8 +32,7 @@
  * @subpackage Classes\Utility
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_Utility_Array
-{
+class Arr {
 
     /**
      * Walks through an array by the defined path.
@@ -55,7 +54,7 @@ class Tx_Helperkit_Utility_Array
 
     /**
      * Better implementation of php's array_combine().
-     * This wont throw false in case both array haven't an identical size.
+     * This wont throw FALSE in case both array haven't an identical size.
      *
      * @static
      * @param array $a Array containing the keys.
@@ -63,7 +62,7 @@ class Tx_Helperkit_Utility_Array
      * @param bool $pad Switch for allowing padding. Fills the combined array with empty values if any array is larger than the other one.
      * @return array Combined array.
      */
-    public static function combineArray($a, $b, $pad = true)
+    public static function combineArray($a, $b, $pad = TRUE)
     {
         $acount = count($a);
         $bcount = count($b);

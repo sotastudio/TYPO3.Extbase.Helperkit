@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\ViewHelpers\Asset;
 /***************************************************************
  *  Copyright notice
  *
@@ -24,6 +24,9 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use SotaStudio\Helperkit\Utility\Page,
+	TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+
 /**
  *
  * A view helper for adding CSS and JS files to teh frontend.
@@ -36,8 +39,8 @@
  * @subpackage ViewHelpers\Asset
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Asset_CssJsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
-{
+class CssJsViewHelper extends AbstractTagBasedViewHelper {
+
 	/**
 	 * Adds JS and CSS to the frontend
 	 *
@@ -46,10 +49,10 @@ class Tx_Helperkit_ViewHelpers_Asset_CssJsViewHelper extends \TYPO3\CMS\Fluid\Co
 	 * @param string $type Override for media type detection
 	 * @return void
 	 */
-	public function render($file = null, $moveToFooter = false, $type = null)
+	public function render($file = NULL, $moveToFooter = FALSE, $type = NULL)
 	{
 		if ($file) {
-			Tx_Helperkit_Utility_Page::addCssJsFile(
+			Page::addCssJsFile(
 				$file,
 				$moveToFooter,
 				$type

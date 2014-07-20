@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\ViewHelpers\Uri;
 /***************************************************************
  *  Copyright notice
  *
@@ -24,6 +24,9 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\GeneralUtility,
+	TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 /**
  *
  * A view helper for dynamic rendering of links.
@@ -33,8 +36,8 @@
  * @subpackage ViewHelpers\Uri
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Uri_DynamicRawViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
-{
+class DynamicRawViewHelper extends AbstractViewHelper {
+
 	/**
 	 * @return void
 	 */
@@ -54,10 +57,10 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicRawViewHelper extends \TYPO3\CMS\Fluid
 		$target = $this->arguments['target'];
 
 		if (isset($target) && !empty($target)) {
-			$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tslib_cObj');
+			$cObj = GeneralUtility::makeInstance('tslib_cObj');
 			$configuration = array(
 				'parameter' => $target,
-				'returnLast' => true
+				'returnLast' => TRUE
 			);
 			$href = $cObj->typolink('', $configuration);
 

@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\Utility;
 /***************************************************************
  *  Copyright notice
  *
@@ -34,8 +34,8 @@
  * @subpackage Classes\Utility
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_Utility_Page
-{
+class Page {
+
 	/**
 	 * Returns the reference to a 'resource' in TypoScript.
 	 *
@@ -44,12 +44,13 @@ class Tx_Helperkit_Utility_Page
 	 */
 	protected static function getFileResource($file)
 	{
-		return Tx_Helperkit_Utility_Div::getFileResource($file);
+		return \SotaStudio\Helperkit\Utility\Div::getFileResource($file);
 	}
 
 	/**
 	 * Adds a JavaScript file to the head.
 	 *
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @param string $file The resource.
 	 * @return void
 	 */
@@ -61,6 +62,7 @@ class Tx_Helperkit_Utility_Page
 	/**
 	 * Adds a JavaScript file right before the closing body tag.
 	 *
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @param string $file The resource.
 	 * @return void
 	 */
@@ -72,6 +74,7 @@ class Tx_Helperkit_Utility_Page
 	/**
 	 * Adds a Stylesheet file to the head.
 	 *
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @param string $file The resource.
 	 * @return void
 	 */
@@ -83,6 +86,7 @@ class Tx_Helperkit_Utility_Page
 	/**
 	 * Adds JavaScript code inline.
 	 *
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @param string $name Unique name for the output.
 	 * @param string $code The code.
 	 * @return void
@@ -95,6 +99,7 @@ class Tx_Helperkit_Utility_Page
 	/**
 	 * Adds JavaScript code inline right before the closing body tag.
 	 *
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @param string $name Unique name for the output.
 	 * @param string $code The code.
 	 * @return void
@@ -107,6 +112,7 @@ class Tx_Helperkit_Utility_Page
 	/**
 	 * Adds a Stylesheet inline.
 	 *
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @param string $name Unique name for the output.
 	 * @param string $code The code.
 	 * @return void
@@ -124,14 +130,14 @@ class Tx_Helperkit_Utility_Page
 	 * @param string $type Override for media type detection
 	 * @return void
 	 */
-	public static function addCssJsFile($file, $moveToFooter = false, $type = null)
+	public static function addCssJsFile($file, $moveToFooter = FALSE, $type = NULL)
 	{
 		// Get file reference
 		$resolved = self::getFileResource($file);
 
 		if ($resolved) {
 			// Get defined type, otherwise automatically detected file extension
-			$mediaTypeSplit = ($type !== '' && $type !== null) ? '.' . $type : strrchr($file, '.');
+			$mediaTypeSplit = ($type !== '' && $type !==NULLl) ? '.' . $type : strrchr($file, '.');
 
 			// JavaScript processing
 			if ($mediaTypeSplit == '.js') {
@@ -153,7 +159,7 @@ class Tx_Helperkit_Utility_Page
 	 * @param string $name Unique key to avoid multiple inclusions
 	 * @param bool $moveToFooter Flag to include file into footer - doesn't work for CSS files
 	 */
-	public static function addJsInline($code, $name = '', $moveToFooter = false)
+	public static function addJsInline($code, $name = '', $moveToFooter = FALSE)
 	{
 		if ($code !== '') {
 			($moveToFooter)

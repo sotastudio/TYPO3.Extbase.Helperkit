@@ -1,27 +1,31 @@
 <?php
+namespace SotaStudio\Helperkit\ViewHelpers\Page;
 /***************************************************************
-*  Copyright notice
-*
-*  (c) 2012 Dominic Garms <djgarms@gmail.com>, DMFmedia GmbH
-*
-*  All rights reserved
-*
-*  This script is part of the TYPO3 project. The TYPO3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-* ************************************************************* */
+ *  Copyright notice
+ *
+ *  (c) 2012-2014 Andy Hausmann <ah@sota-studio.de>, SOTA Studio
+ *  (c) 2012 Dominic Garms <djgarms@gmail.com>, DMFmedia GmbH
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ * ************************************************************* */
+
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * ViewHelper for rendering TYPO3 menus in Fluid
@@ -33,7 +37,7 @@
  * @subpackage ViewHelpers\Page\C
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Page_LanguageMenuViewHelper extends Tx_Vhs_ViewHelpers_Page_LanguageMenuViewHelper  {
+class LanguageMenuViewHelper extends Tx_Vhs_ViewHelpers_Page_LanguageMenuViewHelper {
 
     /**
      * Initialize
@@ -60,11 +64,13 @@ class Tx_Helperkit_ViewHelpers_Page_LanguageMenuViewHelper extends Tx_Vhs_ViewHe
     /**
      * Sets all parameter for langMenu
      *
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
+	 * @var	$GLOBALS['TYPO3_DB'] \TYPO3\CMS\Core\Database\DatabaseConnection
      * @return array
      */
     protected function parseLanguageMenu() {
-        $order = ($this->arguments['order']) ? \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->arguments['order']) : '';
-        $labelOverwrite = ($this->arguments['labelOverwrite']) ? \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->arguments['labelOverwrite']) : '';
+        $order = ($this->arguments['order']) ? GeneralUtility::trimExplode(',', $this->arguments['order']) : '';
+        $labelOverwrite = ($this->arguments['labelOverwrite']) ? GeneralUtility::trimExplode(',', $this->arguments['labelOverwrite']) : '';
 
         $tempArray = $languageMenu = array();
 
@@ -138,7 +144,7 @@ class Tx_Helperkit_ViewHelpers_Page_LanguageMenuViewHelper extends Tx_Vhs_ViewHe
      * @return string
      */
     protected function getLanguageUrl($uid) {
-        $getValues = \TYPO3\CMS\Core\Utility\GeneralUtility::_GET();
+        $getValues = GeneralUtility::_GET();
         $getValues['L'] = $uid;
         $currentPage = $this->arguments['pageUid'];
         unset($getValues['id']);

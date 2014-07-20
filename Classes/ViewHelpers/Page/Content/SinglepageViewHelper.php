@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\ViewHelpers\Page\Content;
 /***************************************************************
  *  Copyright notice
  *
@@ -24,6 +24,11 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  * ************************************************************* */
 
+use TYPO3\CMS\Core\Utility\GeneralUtility,
+	TYPO3\CMS\Extbase\Object\ObjectManagerInterface,
+	TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper,
+	TYPO3\CMS\Frontend\Page\PageRepository;
+
 /**
  * ### Page: Directory Menu ViewHelper
  *
@@ -40,8 +45,7 @@
  * @subpackage ViewHelpers\Page\Content
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
-{
+class SinglepageViewHelper extends AbstractViewHelper {
 
 	/**
 	 * @var \TYPO3\CMS\Frontend\Page\PageRepository#
@@ -90,10 +94,10 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	/**
 	 * Injects the object manager
 	 *
-	 * @param \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
+	 * @param ObjectManagerInterface $objectManager
 	 * @return void
 	 */
-	public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager)
+	public function injectObjectManager(ObjectManagerInterface $objectManager)
 	{
 		$this->objectManager = $objectManager;
 		$this->arguments = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Mvc\\Controller\\Arguments');
@@ -154,6 +158,8 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 
 	/**
 	 * Initialize object
+	 *
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @return void
 	 */
 	public function initializeObject()
@@ -164,7 +170,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 		} else {
 			$groups = array(-1, 0);
 		}
-		$this->pageSelect = new \TYPO3\CMS\Frontend\Page\PageRepository();
+		$this->pageSelect = new PageRepository();
 		//$this->pageSelect->init((boolean) $this->arguments['showHidden']);
 		$clauses = array();
 		foreach ($groups as $group) {
@@ -177,6 +183,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	}
 
 	/**
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @param array $page
 	 * @param array $rootLine
 	 * @return array
@@ -231,7 +238,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 			$page = $this->pageSelect->getPage($pageUid);
 		}
 		$title = $page['title'];
-		$titleFieldList = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->arguments['titleFields']);
+		$titleFieldList = GeneralUtility::trimExplode(',', $this->arguments['titleFields']);
 		foreach ($titleFieldList as $titleFieldName) {
 			if (empty($page[$titleFieldName]) === FALSE) {
 				$title = $page[$titleFieldName];
@@ -265,7 +272,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 			if (TRUE === is_array($this->arguments['doktypes'])) {
 				$types = $this->arguments['doktypes'];
 			} else {
-				$types = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->arguments['doktypes']);
+				$types = GeneralUtility::trimExplode(',', $this->arguments['doktypes']);
 			}
 			foreach ($types as $index => $type) {
 				if (FALSE === ctype_digit($type)) {
@@ -289,6 +296,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	/**
 	 * Filter the fetched menu according to visibility etc.
 	 *
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @param array $menu
 	 * @param array $rootLine
 	 * @return array
@@ -330,7 +338,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 		if ($pages instanceof Traversable) {
 			$pages = iterator_to_array($pages);
 		} elseif (is_string($pages)) {
-			$pages = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $pages, TRUE);
+			$pages = GeneralUtility::trimExplode(',', $pages, TRUE);
 		}
 		if (FALSE === is_array($pages)) {
 			return array();
@@ -340,6 +348,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	}
 
 	/**
+	 * @var	$GLOBALS['TYPO3_DB'] \TYPO3\CMS\Core\Database\DatabaseConnection
 	 * @param string $uid
 	 * @throws Exception
 	 * @return mixed
@@ -351,7 +360,6 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 
 		$providers = $this->providerConfigurationService->resolveConfigurationProviders('pages', 'tx_fed_page_flexform', $row);
 		$priority = 0;
-		/** @var $pageConfigurationProvider Tx_Fluidpages_Provider_PageConfigurationProvider */
 		$pageConfigurationProvider = NULL;
 		foreach ($providers as $provider) {
 			if ($provider->getPriority($row) >= $priority) {
@@ -383,6 +391,7 @@ class Tx_Helperkit_ViewHelpers_Page_Content_SinglepageViewHelper extends \TYPO3\
 	/**
 	 * Render method
 	 *
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @return mixed
 	 */
 	public function render()

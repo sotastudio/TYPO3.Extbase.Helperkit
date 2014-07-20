@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\ViewHelpers\Uri;
 /***************************************************************
  *  Copyright notice
  *
@@ -25,6 +25,10 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use SotaStudio\Helperkit\Utility\Arr,
+	TYPO3\CMS\Core\Utility\GeneralUtility,
+	TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+
 /**
  *
  * A view helper for dynamic rendering of links.
@@ -35,7 +39,7 @@
  * @subpackage ViewHelpers\Uri
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
+class DynamicViewHelper extends AbstractTagBasedViewHelper
 {
 	/**
 	 * @var string
@@ -52,8 +56,8 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Co
 	{
 		parent::initializeArguments();
 		$this->registerUniversalTagAttributes();
-		$this->registerArgument('respectArguments', 'boolean', 'If TRUE the via ViewHelper given link attributes are NOT being overriden by the values set via link wizard. By default they are, so the given arguments are normally treated as some kind of placeholder values. This applies for target, class and title.', false, false);
-		$this->registerTagAttribute('href', 'string', 'The Hyperlink.', true, null);
+		$this->registerArgument('respectArguments', 'boolean', 'If TRUE the via ViewHelper given link attributes are NOT being overriden by the values set via link wizard. By default they are, so the given arguments are normally treated as some kind of placeholder values. This applies for target, class and title.', FALSE, FALSE);
+		$this->registerTagAttribute('href', 'string', 'The Hyperlink.', TRUE, NULL);
 	}
 
 	/**
@@ -98,7 +102,7 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Co
 	 * Checks and processes the given link parameters.
 	 *
 	 * @param string $link Output from TYPO3 link wizard.
-	 * @return bool Returns true if it is possible to build a link.
+	 * @return bool Returns TRUE if it is possible to build a link.
 	 */
 	protected function resolveWizardLink($link)
 	{
@@ -106,22 +110,22 @@ class Tx_Helperkit_ViewHelpers_Uri_DynamicViewHelper extends \TYPO3\CMS\Fluid\Co
 
 		$linkAttributeData = explode(' ', $link, count($linkAttributeModel));
 		// Combine labels and values into one array
-		$linkData = Tx_Helperkit_Utility_Array::combineArray($linkAttributeModel, $linkAttributeData, false);
+		$linkData = Arr::combineArray($linkAttributeModel, $linkAttributeData, FALSE);
 
 		if (isset($linkData['href']) && !empty($linkData['href'])) {
 			// Save link data into ViewHelper arguments
 
-			$cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
+			$cObj = GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
 			$configuration = array(
 				'parameter' => $this->arguments['href'],
-				'returnLast' => true
+				'returnLast' => TRUE
 			);
 			$linkData['href'] = $cObj->typolink('', $configuration);
 			$this->setArgumentsFromArray($linkData);
 
-			return true;
+			return TRUE;
 		} else {
-			return false;
+			return FALSE;
 		}
 	}
 

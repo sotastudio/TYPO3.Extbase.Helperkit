@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\ViewHelpers\Condition;
 /***************************************************************
  *  Copyright notice
  *
@@ -24,6 +24,8 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 /**
  * ### Condition: Type of value is array
  *
@@ -32,26 +34,26 @@
  * @subpackage ViewHelpers\If
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_If_InArrayViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
-{
+class InArrayViewHelper extends AbstractViewHelper {
+
 	/**
 	 * Render method
 	 *
 	 * @param mixed $needle The searched value.
 	 * @param mixed $haystack The array.
-	 * @param bool $strict If set to true then the function will also check the types of the needle in the haystack.
+	 * @param bool $strict If set to TRUE then the function will also check the types of the needle in the haystack.
 	 * @throws Exception In case the $needle is not present.
 	 * @return string
 	 */
-	public function render($needle, $haystack = null, $strict = false)
+	public function render($needle, $haystack = NULL, $strict = FALSE)
 	{
-		if ($haystack == '' || $haystack == null) {
+		if ($haystack == '' || $haystack == NULL) {
 			return '';
-		} else if (!is_array($haystack) === true) {
+		} else if (!is_array($haystack) === TRUE) {
 			throw new Exception('Passed haystack needs to be an array.');
 		}
 
-		if (in_array($needle, $haystack, $strict) === true) {
+		if (in_array($needle, $haystack, $strict) === TRUE) {
 			return $this->renderThenChild();
 		} else {
 			return $this->renderElseChild();

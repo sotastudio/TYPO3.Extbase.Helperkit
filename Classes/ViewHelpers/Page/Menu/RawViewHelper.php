@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\ViewHelpers\Page\Menu;
 /***************************************************************
  *  Copyright notice
  *
@@ -36,8 +36,7 @@
  * @subpackage ViewHelpers\Page\Menu
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Page_Menu_RawViewHelper extends Tx_Vhs_ViewHelpers_Page_Menu_AbstractMenuViewHelper
-{
+class RawViewHelper extends Tx_Vhs_ViewHelpers_Page_Menu_AbstractMenuViewHelper {
 
 	/**
 	 * @return void
@@ -51,6 +50,7 @@ class Tx_Helperkit_ViewHelpers_Page_Menu_RawViewHelper extends Tx_Vhs_ViewHelper
 	/**
 	 * Render method
 	 *
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @return string
 	 */
 	public function render()

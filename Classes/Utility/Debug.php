@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\Utility;
 /***************************************************************
  *  Copyright notice
  *
@@ -24,6 +24,8 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use \TYPO3\CMS\Core\Utility\DebugUtility;
+
 /**
  * Helper Class which makes debugging tools available
  *
@@ -32,17 +34,16 @@
  * @subpackage Classes\Utility
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_Utility_Debug
-{
+class Debug {
 
 	/**
-	 * Helper function for debuggin purposes.
+	 * Helper function for debugging purposes.
 	 *
 	 * @param mixed $v Var to debug
 	 */
 	public static function debug($v)
 	{
-		t3lib_utility_Debug::debug($v);
+		DebugUtility::debug($v);
 	}
 
 	/**

@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\ViewHelpers\Uri;
 /***************************************************************
  *  Copyright notice
  *
@@ -24,6 +24,9 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use SotaStudio\Helperkit\Utility\Div,
+	TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 /**
  *
  * A view helper for dynamic rendering of links.
@@ -33,7 +36,7 @@
  * @subpackage ViewHelpers\Uri
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Uri_ResolveViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class ResolveViewHelper extends AbstractViewHelper
 {
 	/**
 	 * @return void
@@ -41,11 +44,15 @@ class Tx_Helperkit_ViewHelpers_Uri_ResolveViewHelper extends \TYPO3\CMS\Fluid\Co
 	public function initializeArguments()
 	{
 		parent::initializeArguments();
-		$this->registerArgument('absolute', 'bool', 'If true, prepends resolved uri by base url.', false, false);
-		$this->registerArgument('path', 'string', 'Path to resource.', false, null);
-		$this->registerArgument('bypass', 'bool', 'If true, deactivation path resolution.', false, false);
+		$this->registerArgument('absolute', 'bool', 'If TRUE, prepends resolved uri by base url.', FALSE, FALSE);
+		$this->registerArgument('path', 'string', 'Path to resource.', FALSE, NULL);
+		$this->registerArgument('bypass', 'bool', 'If TRUE, deactivation path resolution.', FALSE, FALSE);
 	}
 
+	/**
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
+	 * @return mixed
+	 */
 	protected function getBaseUrl()
 	{
 		return $GLOBALS['TSFE']->baseUrl;
@@ -63,9 +70,9 @@ class Tx_Helperkit_ViewHelpers_Uri_ResolveViewHelper extends \TYPO3\CMS\Fluid\Co
 		$bypass = $this->arguments['bypass'];
 
 		if (isset($path) && !empty($path)) {
-			$uri = ($bypass == false ) ? Tx_Helperkit_Utility_Div::getFileResource($path) : $path;
+			$uri = ($bypass == FALSE ) ? Div::getFileResource($path) : $path;
 
-			if ($absolute == true) {
+			if ($absolute == TRUE) {
 				$uri = $this->controllerContext->getRequest()->getBaseURI() . $uri;
 			}
 

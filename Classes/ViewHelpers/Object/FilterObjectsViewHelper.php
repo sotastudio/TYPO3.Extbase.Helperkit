@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\ViewHelpers\Object;
 /***************************************************************
  *  Copyright notice
  *
@@ -24,6 +24,9 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use SotaStudio\Helperkit\Utility\Arr,
+	TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 /**
  * Returns an array of filtered objects.
  *
@@ -32,8 +35,7 @@
  * @subpackage ViewHelpers\Page
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Object_FilterObjectsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
-{
+class FilterObjectsViewHelper extends AbstractViewHelper {
 
     /**
      * @param mixed $object
@@ -49,7 +51,7 @@ class Tx_Helperkit_ViewHelpers_Object_FilterObjectsViewHelper extends \TYPO3\CMS
         $i = 0;
         foreach($object as &$item) {
             $i++;
-            $itemValue = Tx_Helperkit_Utility_Array::getValueFromPath($item, $propertyPath);
+            $itemValue = Arr::getValueFromPath($item, $propertyPath);
             if($itemValue != $filterValue) unset($object[$i]);
         }
 

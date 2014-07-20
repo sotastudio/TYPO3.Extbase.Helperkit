@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\ViewHelpers\Asset;
 /***************************************************************
  *  Copyright notice
  *
@@ -24,6 +24,12 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use SotaStudio\Helperkit\Utility\Div,
+	SotaStudio\Helperkit\Utility\Page,
+	TYPO3\CMS\Core\Messaging\FlashMessage,
+	TYPO3\CMS\Core\Utility\ExtensionManagementUtility,
+	TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+
 /**
  *
  * A ViewHelper for adding jQuery to the frontend.
@@ -33,8 +39,8 @@
  * @subpackage ViewHelpers\Asset
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Asset_JQueryViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
-{
+class JQueryViewHelper extends AbstractTagBasedViewHelper {
+
 	/**
 	 * Adds T3Jquery as Lib
 	 *
@@ -48,24 +54,24 @@ class Tx_Helperkit_ViewHelpers_Asset_JQueryViewHelper extends \TYPO3\CMS\Fluid\C
 	public function render($altJQueryFile = NULL, $moveToFooter = FALSE)
 	{
 		// checks if t3jquery is loaded
-		if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('t3jquery')) {
-			require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('t3jquery') . 'class.tx_t3jquery.php');
+		if (ExtensionManagementUtility::isLoaded('t3jquery')) {
+			require_once(ExtensionManagementUtility::extPath('t3jquery') . 'class.tx_t3jquery.php');
 		}
 		// if t3jquery is loaded and the custom Library had been created
-		if (T3JQUERY === true) {
+		if (T3JQUERY === TRUE) {
 			tx_t3jquery::addJqJS();
 
 		} else {
 			if ($altJQueryFile) {
-				Tx_Helperkit_Utility_Page::addCssJsFile(
+				Page::addCssJsFile(
 					$altJQueryFile,
 					$moveToFooter
 				);
 			} else {
-				Tx_Helperkit_Utility_Div::renderFlashMessage(
+				Div::renderFlashMessage(
 					'jQuery not loaded',
 					'jQuery could not be loaded. Please check the path to the alternative jQuery library or simply use the Extension t3jquery.',
-					\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
+					FlashMessage::ERROR
 				);
 			}
 		}

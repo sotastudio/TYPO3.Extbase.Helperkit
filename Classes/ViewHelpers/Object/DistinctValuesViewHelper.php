@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\ViewHelpers\Object;
 /***************************************************************
  *  Copyright notice
  *
@@ -24,6 +24,9 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use SotaStudio\Helperkit\Utility\Arr,
+	TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 /**
  * Returns an array of distinct values.
  *
@@ -32,8 +35,7 @@
  * @subpackage ViewHelpers\Page
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Object_DistinctValuesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
-{
+class DistinctValuesViewHelper extends AbstractViewHelper {
 
     /**
      * @param mixed $object
@@ -50,7 +52,7 @@ class Tx_Helperkit_ViewHelpers_Object_DistinctValuesViewHelper extends \TYPO3\CM
         $values = array();
 
         foreach($object as $item) {
-            $values[] = Tx_Helperkit_Utility_Array::getValueFromPath($item, $propertyPath);
+            $values[] = Arr::getValueFromPath($item, $propertyPath);
         }
 
         $values = array_unique($values);

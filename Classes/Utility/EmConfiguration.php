@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\Utility;
 /***************************************************************
  *  Copyright notice
  *
@@ -32,8 +32,7 @@
  * @subpackage Classes\Utility
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_Utility_EmConfiguration
-{
+class EmConfiguration {
 
 	/**
 	 * Extension key to get the EM Config from.

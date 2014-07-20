@@ -1,9 +1,10 @@
 <?php
-
+namespace SotaStudio\Helperkit\Utility;
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2012-2014 Andy Hausmann <ah@sota-studio.de>, SOTA Studio
+ *  (c) 2012-2014 Xaver Maierhofer <xaver.maierhofer@xwissen.info>
  *
  *  All rights reserved
  *
@@ -24,6 +25,10 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Messaging\FlashMessage,
+	TYPO3\CMS\Core\Utility\ExtensionManagementUtility,
+	TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * Helper Class which makes various tools and helper available
  *
@@ -32,36 +37,36 @@
  * @subpackage Classes\Utility
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_Utility_Div
-{
+class Div {
+
 	/**
 	 * Returns the reference to a 'resource' in TypoScript.
 	 *
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @param string $file File get a reference from - can contain EXT:ext_name
 	 * @return mixed
 	 */
-	public static function getFileResource($file)
-	{
+	public static function getFileResource($file) {
 		return $GLOBALS['TSFE']->tmpl->getFileName($file);
 	}
 
 	/**
 	 * Adds/renders a Flash message.
 	 *
+	 * @var	$GLOBALS['TSFE'] \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
 	 * @param string $title The title
 	 * @param string $message The message
 	 * @param int $type Message level
 	 * @return mixed
 	 */
-	public static function renderFlashMessage($title, $message, $type = \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING)
-	{
-		$code = ".typo3-message .message-header{padding: 10px 10px 0 30px;font-size:0.9em;}";
-		$code .= ".typo3-message .message-body{padding: 10px;font-size:0.9em;}";
+	public static function renderFlashMessage($title, $message, $type = FlashMessage::WARNING) {
+		$code  = '.typo3-message .message-header{padding: 10px 10px 0 30px;font-size:0.9em;}';
+		$code .= '.typo3-message .message-body{padding: 10px;font-size:0.9em;}';
 
-		$GLOBALS['TSFE']->getPageRenderer()->addCssFile(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('t3skin') . 'stylesheets/visual/element_message.css');
-		$GLOBALS['TSFE']->getPageRenderer()->addCssInlineBlock('flashmessage', $code);
+		$GLOBALS['TSFE']->getPageRenderer()->addCssFile(ExtensionManagementUtility::siteRelPath('t3skin') . 'Resources/Public/Css/visual/element_message.css');
+		$GLOBALS['TSFE']->getPageRenderer()->addCssInlineBlock('flashmessage',$code);
 
-		$flashMessage = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('t3lib_FlashMessage', $message, $title, $type);
+		$flashMessage = GeneralUtility::makeInstance('t3lib_FlashMessage', $message, $title, $type);
 		return $flashMessage->render();
 	}
 
@@ -74,7 +79,7 @@ class Tx_Helperkit_Utility_Div
 	 */
 	public static function isUrl($url)
 	{
-		return (filter_var($url, FILTER_VALIDATE_URL)) ? true : false;
+		return (filter_var($url, FILTER_VALIDATE_URL)) ? TRUE : FALSE;
 	}
 
 }

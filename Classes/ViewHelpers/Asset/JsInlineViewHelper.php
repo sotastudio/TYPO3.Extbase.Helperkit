@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\ViewHelpers\Asset;
 /***************************************************************
  *  Copyright notice
  *
@@ -25,6 +25,9 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use SotaStudio\Helperkit\Utility\Page,
+	TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
+
 /**
  *
  * Renders Inline JS via PageRenderer and enables Plugins to throw it into external files,
@@ -44,8 +47,8 @@
  * @subpackage ViewHelpers\Asset
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Asset_JsInlineViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
-{
+class JsInlineViewHelper extends AbstractTagBasedViewHelper {
+
 	/**
 	 * Adds JS and CSS to the frontend
 	 *
@@ -54,10 +57,10 @@ class Tx_Helperkit_ViewHelpers_Asset_JsInlineViewHelper extends \TYPO3\CMS\Fluid
 	 * @param bool  $moveToFooter  Unique label in order to avoid multiple code blocks of the same code.
 	 * @return void
 	 */
-	public function render($code = null, $name = '', $moveToFooter = false)
+	public function render($code = NULL, $name = '', $moveToFooter = FALSE)
 	{
 		if ($code) {
-			Tx_Helperkit_Utility_Page::addJsInline(
+			Page::addJsInline(
 				$code,
 				$name,
 				$moveToFooter

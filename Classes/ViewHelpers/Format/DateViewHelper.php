@@ -1,4 +1,5 @@
 <?php
+namespace SotaStudio\Helperkit\ViewHelpers\Format;
 /***************************************************************
  *  Copyright notice
  *
@@ -22,6 +23,8 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+
+use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * ViewHelper to format a date, using strftime
@@ -63,15 +66,15 @@
  * @subpackage ViewHelpers\Format
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_ViewHelpers_Format_DateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class DateViewHelper extends AbstractViewHelper {
 
 	/**
 	 * Render the supplied DateTime object as a formatted date.
 	 *
 	 * @param mixed $date DateTime object or a string that is accepted by DateTime constructor
 	 * @param string $format Format String which is taken to format the Date/Time
-	 * @param bool $currentDate if true, the current date is used
-	 * @param bool $strftime if true, the strftime is used instead of date()
+	 * @param bool $currentDate if TRUE, the current date is used
+	 * @param bool $strftime if TRUE, the strftime is used instead of date()
 	 * @throws Exception
 	 * @return string Formatted date
 	 */
@@ -107,4 +110,3 @@ class Tx_Helperkit_ViewHelpers_Format_DateViewHelper extends \TYPO3\CMS\Fluid\Co
 		return utf8_encode($formattedDate);
 	}
 }
-?>

@@ -1,5 +1,5 @@
 <?php
-
+namespace SotaStudio\Helperkit\Utility;
 /***************************************************************
  *  Copyright notice
  *
@@ -32,8 +32,8 @@
  * @subpackage Classes\Utility
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Tx_Helperkit_Utility_Geocoding
-{
+class Geocoding {
+
 	/** @var string  URL to Google's Geocoding Service. */
 	static protected $apiUrl = 'http://maps.googleapis.com/maps/api/geocode/';
 
@@ -88,7 +88,7 @@ class Tx_Helperkit_Utility_Geocoding
 	 * @param bool $sensor
 	 * @return object
 	 */
-	public static function getGeoCoordinates($address, $sensor = false)
+	public static function getGeoCoordinates($address, $sensor = FALSE)
 	{
 		$url = self::getGeoCodingUrl($address, $sensor);
 		$res = self::getJsonFromUrl($url);
@@ -101,10 +101,10 @@ class Tx_Helperkit_Utility_Geocoding
 	 * - GPS sensor usage
 	 *
 	 * @param string $address Address to geocode.
-	 * @param bool $sensor Defines whether a GPS sensor should be used. Defaults to false.
+	 * @param bool $sensor Defines whether a GPS sensor should be used. Defaults to FALSE.
 	 * @return string The final URL to call.
 	 */
-	public static function getGeoCodingUrl($address, $sensor = false)
+	public static function getGeoCodingUrl($address, $sensor = FALSE)
 	{
 		$url = self::getGoogleMapsGeoApiCall() . '?'
 			. 'sensor=' . (($sensor) ? 'true' : 'false') . '&'
@@ -129,7 +129,7 @@ class Tx_Helperkit_Utility_Geocoding
 		}
 		$ch = curl_init($url);
 		$options = array(
-			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_RETURNTRANSFER => TRUE,
 			CURLOPT_HTTPHEADER => array('Content-type: application/json'),
 		);
 		curl_setopt_array($ch, $options);
