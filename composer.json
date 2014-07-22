@@ -1,7 +1,27 @@
- {
-     "name": "sotastudio/helperkit",
-     "description": "An extension providing a set of Fluid ViewHelper and Extbase Utilities.",
-     "require": {
-     },
-     "type": "typo3-cms-extension"
-  }
+{
+	"name": "sotastudio/helperkit",
+	"description": "An extension providing a set of Fluid ViewHelper and Extbase Utilities.",
+	"version": "2.4.1",
+	"type": "typo3-cms-extension",
+	"keywords": ["helperkit", "framework", "ext", "helper", "viewhelper", "collection"],
+	"homepage": "https://sota-studio.de",
+	"authors": [
+		{
+			"name": "Andy Hausmann",
+			"email": "ah@sota-studio.de",
+			"homepage": "http://sota-studio.de",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"email": "hi@sota-studio.de",
+		"issues": "https://github.com/sotastudio/TYPO3.Extbase.Helperkit/issues",
+		"source": "https://github.com/sotastudio/TYPO3.Extbase.Helperkit"
+	},
+	"require": {
+
+	},
+	"suggest": {
+
+	}
+}
